@@ -393,13 +393,13 @@ const questionBank = [
   image: "assets/heart-flow.png",
   imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
   answers: [
-    "Capillaries of the right lung",
     "Superior vena cava",
-    "Pulmonary vein",
-    "Left ventricle"
+    "Pulmonary veins",
+    "Right atrium",
+    "Inferior vena cava"
   ],
   correct: 0,
-  explanation: "Label 1 points to the capillaries of the right lung, where gas exchange occurs."
+  explanation: "Label 1 points to the superior vena cava, which returns oxygen-poor blood from the upper body to the heart."
 },
 {
   chapter: 6,
@@ -408,13 +408,13 @@ const questionBank = [
   image: "assets/heart-flow.png",
   imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
   answers: [
-    "Inferior vena cava",
-    "Superior vena cava",
-    "Aorta",
-    "Pulmonary artery"
+    "Pulmonary capillaries",
+    "Systemic (body) capillaries",
+    "Pulmonary arteries",
+    "Left ventricle"
   ],
   correct: 1,
-  explanation: "Label 2 points to the superior vena cava, which returns oxygen-poor blood from the upper body to the heart."
+  explanation: "Label 2 points to systemic body capillaries, where blood exchanges oxygen, carbon dioxide, nutrients, and wastes with body tissues."
 },
 {
   chapter: 6,
@@ -423,13 +423,13 @@ const questionBank = [
   image: "assets/heart-flow.png",
   imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
   answers: [
-    "Capillaries of the upper body",
-    "Capillaries of the left lung",
+    "Arteriole",
     "Pulmonary vein",
-    "Right atrium"
+    "Venule",
+    "Aorta"
   ],
-  correct: 0,
-  explanation: "Label 3 points to the capillaries of the upper body, where oxygen is delivered to tissues and carbon dioxide is picked up."
+  correct: 2,
+  explanation: "Label 3 points to a venule, a small vessel that collects blood leaving capillaries and leads into veins."
 },
 {
   chapter: 6,
@@ -438,13 +438,13 @@ const questionBank = [
   image: "assets/heart-flow.png",
   imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
   answers: [
-    "Pulmonary artery",
+    "Venule",
+    "Arteriole",
     "Inferior vena cava",
-    "Oxygenated blood/systemic artery going to the upper body",
-    "Right ventricle"
+    "Right atrium"
   ],
-  correct: 2,
-  explanation: "Label 4 points to oxygenated blood in a systemic artery going to the upper body."
+  correct: 1,
+  explanation: "Label 4 points to an arteriole, a small branch of an artery that leads blood into capillaries."
 },
 {
   chapter: 6,
@@ -453,13 +453,13 @@ const questionBank = [
   image: "assets/heart-flow.png",
   imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
   answers: [
-    "Aorta",
+    "Vein",
     "Pulmonary vein",
-    "Right atrium",
-    "Inferior vena cava"
+    "Artery",
+    "Right ventricle"
   ],
-  correct: 0,
-  explanation: "Label 5 points to the aorta, the major artery carrying oxygenated blood from the left ventricle to the body."
+  correct: 2,
+  explanation: "Label 5 points to an artery, a vessel that carries blood away from the heart."
 },
 {
   chapter: 6,
@@ -468,13 +468,13 @@ const questionBank = [
   image: "assets/heart-flow.png",
   imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
   answers: [
-    "Pulmonary vein",
-    "Pulmonary artery",
+    "Pulmonary veins",
     "Aorta",
-    "Left atrium"
+    "Pulmonary arteries",
+    "Systemic capillaries"
   ],
-  correct: 1,
-  explanation: "Label 6 points to the pulmonary artery, which carries oxygen-poor blood from the heart to the lungs."
+  correct: 2,
+  explanation: "Label 6 points to the pulmonary arteries, which carry oxygen-poor blood from the heart to the lungs."
 },
 {
   chapter: 6,
@@ -483,13 +483,13 @@ const questionBank = [
   image: "assets/heart-flow.png",
   imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
   answers: [
-    "Capillaries of the right lung",
-    "Left ventricle",
-    "Capillaries of the left lung",
-    "Superior vena cava"
+    "Systemic body capillaries",
+    "Pulmonary (lung) capillaries",
+    "Pulmonary veins",
+    "Left atrium"
   ],
-  correct: 2,
-  explanation: "Label 7 points to the capillaries of the left lung, where blood releases carbon dioxide and picks up oxygen."
+  correct: 1,
+  explanation: "Label 7 points to pulmonary lung capillaries, where blood releases carbon dioxide and picks up oxygen."
 },
 {
   chapter: 6,
@@ -498,13 +498,13 @@ const questionBank = [
   image: "assets/heart-flow.png",
   imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
   answers: [
-    "Pulmonary artery",
-    "Aorta",
-    "Right ventricle",
-    "Pulmonary vein"
+    "Pulmonary arteries",
+    "Superior vena cava",
+    "Pulmonary veins",
+    "Right atrium"
   ],
-  correct: 3,
-  explanation: "Label 8 points to the pulmonary vein, which carries oxygenated blood from the lungs back to the heart."
+  correct: 2,
+  explanation: "Label 8 points to the pulmonary veins, which carry oxygenated blood from the lungs back to the left atrium."
 },
 {
   chapter: 6,
@@ -516,7 +516,7 @@ const questionBank = [
     "Left atrium",
     "Left ventricle",
     "Right atrium",
-    "Inferior vena cava"
+    "Aorta"
   ],
   correct: 0,
   explanation: "Label 9 next to the heart points to the left atrium, which receives oxygenated blood from the pulmonary veins."
@@ -530,26 +530,26 @@ const questionBank = [
   answers: [
     "Right ventricle",
     "Left atrium",
-    "Left ventricle",
-    "Pulmonary artery"
+    "Inferior vena cava",
+    "Left ventricle"
   ],
-  correct: 2,
+  correct: 3,
   explanation: "Label 10 points to the left ventricle, which pumps oxygenated blood into the aorta."
 },
 {
   chapter: 6,
   topic: "Heart Diagram",
-  question: "In the diagram, what is label 11?",
+  question: "In the diagram, what is label 11 on the left side?",
   image: "assets/heart-flow.png",
   imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
   answers: [
     "Superior vena cava",
     "Inferior vena cava",
-    "Aorta",
+    "Tissue cells",
     "Pulmonary vein"
   ],
   correct: 1,
-  explanation: "Label 11 points to the inferior vena cava, which returns oxygen-poor blood from the lower body to the heart."
+  explanation: "Label 11 on the left side points to the inferior vena cava, which returns oxygen-poor blood from the lower body to the heart."
 },
 {
   chapter: 6,
@@ -580,6 +580,21 @@ const questionBank = [
   ],
   correct: 3,
   explanation: "Label 13 points to the right ventricle, which pumps oxygen-poor blood toward the lungs."
+},
+{
+  chapter: 6,
+  topic: "Heart Diagram",
+  question: "In the diagram, what is label 14?",
+  image: "assets/heart-flow.png",
+  imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
+  answers: [
+    "Pulmonary capillaries",
+    "Systemic (body) capillaries",
+    "Pulmonary veins",
+    "Arteriole"
+  ],
+  correct: 1,
+  explanation: "Label 14 points to systemic body capillaries in the lower body, where exchange occurs between blood and tissues."
 },{
   chapter: 6,
   topic: "Blood Vessels",
