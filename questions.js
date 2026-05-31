@@ -1,38 +1,8 @@
 const chapters = [
   {
-    id: 1,
-    title: "EMS Systems",
-    description: "Roles, responsibilities, certification, medical direction, and EMS system structure."
-  },
-  {
-    id: 2,
-    title: "Workforce Safety and Wellness",
-    description: "Scene safety, stress, infection control, PPE, and provider wellness."
-  },
-  {
-    id: 3,
-    title: "Medical, Legal, and Ethical Issues",
-    description: "Consent, refusal, negligence, confidentiality, and patient rights."
-  },
-  {
-    id: 4,
-    title: "Communications and Documentation",
-    description: "Radio reports, patient care reports, communication skills, and documentation."
-  },
-  {
-    id: 5,
-    title: "Medical Terminology",
-    description: "Prefixes, suffixes, root words, abbreviations, and body terms."
-  },
-  {
     id: 6,
     title: "The Human Body",
     description: "Anatomy, body systems, planes, positions, and basic physiology."
-  },
-  {
-    id: 7,
-    title: "Life Span Development",
-    description: "Infants, children, adults, older adults, and age-related assessment differences."
   },
   {
     id: 8,
@@ -52,656 +22,6 @@ const chapters = [
 ];
 
 const questionBank = [
-  {
-  chapter: 1,
-  topic: "EMS Systems",
-  question: "What is the primary role of an EMT in the EMS system?",
-  answers: [
-    "Diagnose patients in the field",
-    "Provide emergency care and safely transport patients",
-    "Perform surgery before transport",
-    "Replace the emergency room staff"
-  ],
-  correct: 1,
-  explanation: "EMTs provide emergency care, stabilize patients, and transport them safely to an appropriate medical facility."
-},
-{
-  chapter: 1,
-  topic: "EMS Systems",
-  question: "What is medical direction?",
-  answers: [
-    "A hospital map",
-    "Physician oversight of EMS care",
-    "A patient's request for transport",
-    "The EMT's personal opinion"
-  ],
-  correct: 1,
-  explanation: "Medical direction means EMS providers work under physician oversight through protocols, orders, or consultation."
-},
-{
-  chapter: 1,
-  topic: "EMS Systems",
-  question: "What is an EMS protocol?",
-  answers: [
-    "A random decision made by the EMT",
-    "A written guideline for patient care",
-    "A hospital bill",
-    "A type of ambulance"
-  ],
-  correct: 1,
-  explanation: "Protocols are written guidelines that help EMTs know what care to provide in specific situations."
-},
-{
-  chapter: 1,
-  topic: "EMS Systems",
-  question: "Which level of EMS provider generally has the most advanced prehospital training?",
-  answers: [
-    "Emergency Medical Responder",
-    "EMT",
-    "Advanced EMT",
-    "Paramedic"
-  ],
-  correct: 3,
-  explanation: "Paramedics usually have the highest level of prehospital training and can perform advanced skills."
-},
-{
-  chapter: 1,
-  topic: "EMS Systems",
-  question: "What does quality improvement in EMS focus on?",
-  answers: [
-    "Punishing EMTs for every mistake",
-    "Improving patient care and system performance",
-    "Making documentation shorter only",
-    "Avoiding medical direction"
-  ],
-  correct: 1,
-  explanation: "Quality improvement reviews EMS care and system performance to improve patient outcomes."
-},
-{
-  chapter: 1,
-  topic: "EMS Systems",
-  question: "Why is continuing education important for EMTs?",
-  answers: [
-    "EMS knowledge and skills must stay current",
-    "It replaces patient assessment",
-    "It allows EMTs to ignore protocols",
-    "It is only needed once"
-  ],
-  correct: 0,
-  explanation: "Continuing education helps EMTs keep their knowledge, skills, and certification current."
-},
-{
-  chapter: 1,
-  topic: "EMS Systems",
-  question: "What is the purpose of public health in EMS?",
-  answers: [
-    "Only treating patients inside hospitals",
-    "Preventing illness and injury in the community",
-    "Selling medical equipment",
-    "Replacing 911 dispatchers"
-  ],
-  correct: 1,
-  explanation: "EMS connects with public health by helping prevent illness, injury, and community health problems."
-},
-{
-  chapter: 1,
-  topic: "EMS Systems",
-  question: "What should an EMT do if a situation is outside their training or protocol?",
-  answers: [
-    "Guess and do whatever seems right",
-    "Contact medical direction or follow local procedures",
-    "Ignore the patient",
-    "Ask a bystander to decide"
-  ],
-  correct: 1,
-  explanation: "If something is outside your scope or unclear, you should follow local protocol and contact medical direction when needed."
-},
-{
-  chapter: 1,
-  topic: "EMS Systems",
-  question: "Which action best shows professionalism as an EMT?",
-  answers: [
-    "Arguing with the patient",
-    "Maintaining patient privacy and treating people respectfully",
-    "Posting calls on social media",
-    "Ignoring your partner"
-  ],
-  correct: 1,
-  explanation: "Professionalism includes respect, privacy, teamwork, calm behavior, and responsible patient care."
-},
-{
-  chapter: 1,
-  topic: "EMS Systems",
-  question: "What is the EMT's scope of practice?",
-  answers: [
-    "The skills and care an EMT is legally allowed to perform",
-    "The size of the ambulance",
-    "The hospital's waiting room rules",
-    "Anything the patient asks for"
-  ],
-  correct: 0,
-  explanation: "Scope of practice means the legal limits of what an EMT is trained and allowed to do."
-},
-  {
-  chapter: 2,
-  topic: "Workforce Safety",
-  question: "What should an EMT do before entering any emergency scene?",
-  answers: [
-    "Begin patient care immediately",
-    "Make sure the scene is safe",
-    "Ask for payment information",
-    "Remove all PPE"
-  ],
-  correct: 1,
-  explanation: "Scene safety comes first. You cannot help the patient if you become injured or unsafe."
-},
-{
-  chapter: 2,
-  topic: "Workforce Safety",
-  question: "What does PPE stand for?",
-  answers: [
-    "Patient Protection Equipment",
-    "Personal Protective Equipment",
-    "Primary Patient Evaluation",
-    "Public Provider Emergency"
-  ],
-  correct: 1,
-  explanation: "PPE means personal protective equipment, such as gloves, masks, eye protection, and gowns."
-},
-{
-  chapter: 2,
-  topic: "Infection Control",
-  question: "When should gloves be worn?",
-  answers: [
-    "Only after patient care is finished",
-    "When there is possible contact with blood or body fluids",
-    "Only during trauma calls",
-    "Only when the patient requests it"
-  ],
-  correct: 1,
-  explanation: "Gloves help protect you from blood, body fluids, and possible infectious material."
-},
-{
-  chapter: 2,
-  topic: "Infection Control",
-  question: "What is the best way to reduce the spread of infection after removing gloves?",
-  answers: [
-    "Touch your face",
-    "Wash your hands or use hand sanitizer",
-    "Put the gloves in your pocket",
-    "Skip cleaning if the call was short"
-  ],
-  correct: 1,
-  explanation: "Hand hygiene is one of the most important ways to prevent spreading infection."
-},
-{
-  chapter: 2,
-  topic: "Stress Management",
-  question: "Which situation may increase stress for an EMT?",
-  answers: [
-    "Routine station cleaning",
-    "A call involving serious injury or death",
-    "Eating lunch",
-    "Checking the ambulance fuel level"
-  ],
-  correct: 1,
-  explanation: "Traumatic calls, death, violence, and high-pressure situations can increase stress for EMS providers."
-},
-{
-  chapter: 2,
-  topic: "Stress Management",
-  question: "Which is a healthy way to manage EMS-related stress?",
-  answers: [
-    "Ignore it completely",
-    "Talk to trusted support or seek help when needed",
-    "Use alcohol to cope",
-    "Stop sleeping"
-  ],
-  correct: 1,
-  explanation: "Healthy stress management includes rest, support, exercise, talking with others, and professional help when needed."
-},
-{
-  chapter: 2,
-  topic: "Scene Safety",
-  question: "What should you do if a scene becomes unsafe?",
-  answers: [
-    "Stay no matter what",
-    "Retreat to a safe area and request help",
-    "Continue treatment faster",
-    "Ignore your partner"
-  ],
-  correct: 1,
-  explanation: "If a scene becomes unsafe, move to safety and request the proper resources."
-},
-{
-  chapter: 2,
-  topic: "Body Substance Isolation",
-  question: "What is the purpose of body substance isolation precautions?",
-  answers: [
-    "To protect only the patient",
-    "To reduce exposure to blood and body fluids",
-    "To make calls take longer",
-    "To replace patient assessment"
-  ],
-  correct: 1,
-  explanation: "Body substance isolation precautions help reduce the risk of exposure to potentially infectious material."
-},
-{
-  chapter: 2,
-  topic: "Provider Wellness",
-  question: "Why is sleep important for EMTs?",
-  answers: [
-    "It has no effect on performance",
-    "It helps alertness, decision-making, and safety",
-    "It only matters after night shifts",
-    "It replaces training"
-  ],
-  correct: 1,
-  explanation: "Good sleep supports alertness, reaction time, mood, and safe decision-making during calls."
-},
-{
-  chapter: 2,
-  topic: "Workforce Safety",
-  question: "What should an EMT do after being exposed to blood or body fluids?",
-  answers: [
-    "Ignore it if they feel fine",
-    "Report it and follow local exposure procedures",
-    "Finish the shift without telling anyone",
-    "Only rinse with water and leave"
-  ],
-  correct: 1,
-  explanation: "Exposure incidents should be reported right away and handled according to local policy."
-},
-  {
-  chapter: 3,
-  topic: "Medical Legal",
-  question: "What is consent?",
-  answers: [
-    "Permission from the patient to provide care",
-    "A type of EMS report",
-    "A hospital diagnosis",
-    "A way to avoid documentation"
-  ],
-  correct: 0,
-  explanation: "Consent means the patient gives permission for assessment, treatment, or transport."
-},
-{
-  chapter: 3,
-  topic: "Medical Legal",
-  question: "Which patient can usually refuse care?",
-  answers: [
-    "An unconscious patient",
-    "An alert adult who understands the risks",
-    "A confused patient",
-    "A young child without a guardian"
-  ],
-  correct: 1,
-  explanation: "A competent adult who understands the risks can usually refuse care."
-},
-{
-  chapter: 3,
-  topic: "Consent",
-  question: "What is implied consent?",
-  answers: [
-    "Consent given by a patient in writing only",
-    "Consent assumed when a patient cannot respond and needs emergency care",
-    "Consent from a bystander",
-    "Consent that only applies to EMT partners"
-  ],
-  correct: 1,
-  explanation: "Implied consent applies when a patient is unable to give consent but needs emergency care."
-},
-{
-  chapter: 3,
-  topic: "Consent",
-  question: "What is expressed consent?",
-  answers: [
-    "Permission clearly given by the patient",
-    "Permission guessed by the EMT",
-    "A refusal of care",
-    "A law enforcement order"
-  ],
-  correct: 0,
-  explanation: "Expressed consent is when the patient clearly gives permission, either verbally or through an action."
-},
-{
-  chapter: 3,
-  topic: "Negligence",
-  question: "What is negligence in EMS?",
-  answers: [
-    "Providing excellent patient care",
-    "Failure to provide the expected standard of care",
-    "Asking too many questions",
-    "Following local protocol"
-  ],
-  correct: 1,
-  explanation: "Negligence happens when a provider fails to act as expected and that failure may harm the patient."
-},
-{
-  chapter: 3,
-  topic: "Duty to Act",
-  question: "What does duty to act mean?",
-  answers: [
-    "An EMT has a legal obligation to provide care while on duty",
-    "An EMT can do anything they want",
-    "A patient must always accept transport",
-    "Only doctors have responsibilities"
-  ],
-  correct: 0,
-  explanation: "Duty to act means an EMT has a legal responsibility to respond and provide care when officially on duty."
-},
-{
-  chapter: 3,
-  topic: "Confidentiality",
-  question: "Which action protects patient confidentiality?",
-  answers: [
-    "Posting call details online",
-    "Discussing the patient loudly in public",
-    "Sharing information only with people involved in patient care",
-    "Sending patient photos to friends"
-  ],
-  correct: 2,
-  explanation: "Patient information should only be shared with appropriate healthcare providers or people directly involved in care."
-},
-{
-  chapter: 3,
-  topic: "Abandonment",
-  question: "What is patient abandonment?",
-  answers: [
-    "Ending care without making sure equal or higher-level care takes over",
-    "Transporting a patient to the hospital",
-    "Calling for ALS",
-    "Documenting patient care"
-  ],
-  correct: 0,
-  explanation: "Abandonment means stopping care without properly transferring the patient to another qualified provider."
-},
-{
-  chapter: 3,
-  topic: "Advance Directives",
-  question: "What is a DNR order?",
-  answers: [
-    "A request to delay transport",
-    "A do-not-resuscitate order",
-    "A radio report",
-    "A refusal form for all care"
-  ],
-  correct: 1,
-  explanation: "A DNR is a medical order that may limit resuscitation efforts, depending on local laws and protocols."
-},
-{
-  chapter: 3,
-  topic: "Ethics",
-  question: "Which action is most ethical for an EMT?",
-  answers: [
-    "Treating every patient with respect and dignity",
-    "Judging patients based on their choices",
-    "Ignoring patients who are rude",
-    "Only helping easy patients"
-  ],
-  correct: 0,
-  explanation: "Ethical EMS care means treating patients fairly, respectfully, and professionally."
-},
-  {
-  chapter: 4,
-  topic: "Documentation",
-  question: "What is the purpose of a patient care report?",
-  answers: [
-    "To document assessment, treatment, and transport",
-    "To replace patient care",
-    "To diagnose the patient",
-    "To avoid talking to the hospital"
-  ],
-  correct: 0,
-  explanation: "The patient care report documents what happened, what you found, what care you provided, and where the patient was transported."
-},
-{
-  chapter: 4,
-  topic: "Communication",
-  question: "When giving a radio report, what should an EMT try to be?",
-  answers: [
-    "Long and emotional",
-    "Clear, organized, and brief",
-    "Funny and casual",
-    "Silent unless asked questions"
-  ],
-  correct: 1,
-  explanation: "EMS communication should be clear, organized, professional, and brief."
-},
-{
-  chapter: 4,
-  topic: "Communication",
-  question: "Which information should usually be included in a hospital radio report?",
-  answers: [
-    "Patient age, chief complaint, vital signs, and treatment given",
-    "The EMT's favorite diagnosis",
-    "Only the patient's name",
-    "A full life story of the patient"
-  ],
-  correct: 0,
-  explanation: "A good radio report gives important patient information like age, sex, chief complaint, condition, vital signs, and care provided."
-},
-{
-  chapter: 4,
-  topic: "Documentation",
-  question: "Why should documentation be completed as soon as possible after a call?",
-  answers: [
-    "Details are easier to remember accurately",
-    "It makes patient care unnecessary",
-    "It allows EMTs to skip signatures",
-    "It prevents the hospital from asking questions"
-  ],
-  correct: 0,
-  explanation: "Writing the report soon after the call helps keep the information accurate and complete."
-},
-{
-  chapter: 4,
-  topic: "Documentation",
-  question: "Which statement is best for a patient care report?",
-  answers: [
-    "Patient was acting crazy",
-    "Patient appeared anxious and stated, 'I feel like I can't breathe'",
-    "Patient was annoying",
-    "Patient obviously wanted attention"
-  ],
-  correct: 1,
-  explanation: "Reports should be objective, professional, and include patient statements when useful."
-},
-{
-  chapter: 4,
-  topic: "Communication",
-  question: "What is therapeutic communication?",
-  answers: [
-    "Arguing with the patient",
-    "Using communication to calm, support, and gather information",
-    "Only talking to family members",
-    "Avoiding eye contact completely"
-  ],
-  correct: 1,
-  explanation: "Therapeutic communication helps build trust, reduce anxiety, and gather accurate information."
-},
-{
-  chapter: 4,
-  topic: "Communication",
-  question: "What should you do if a patient does not understand your question?",
-  answers: [
-    "Repeat it louder with the same words",
-    "Rephrase it in simpler language",
-    "Ignore the patient",
-    "Document that they refused"
-  ],
-  correct: 1,
-  explanation: "If a patient does not understand, use clear and simple language without talking down to them."
-},
-{
-  chapter: 4,
-  topic: "Communication",
-  question: "Why is communication with your EMS partner important?",
-  answers: [
-    "It helps teamwork and patient safety",
-    "It replaces assessment",
-    "It is only useful after transport",
-    "It makes documentation optional"
-  ],
-  correct: 0,
-  explanation: "Good partner communication helps divide tasks, prevent mistakes, and improve patient care."
-},
-{
-  chapter: 4,
-  topic: "Documentation",
-  question: "If you make a mistake on a written report, what should you usually do?",
-  answers: [
-    "Hide the mistake",
-    "Follow local policy for correcting documentation",
-    "Throw the report away",
-    "Ask the patient to fix it"
-  ],
-  correct: 1,
-  explanation: "Documentation errors should be corrected according to local policy, usually in a clear and honest way."
-},
-{
-  chapter: 4,
-  topic: "Communication",
-  question: "What is the best way to communicate with a receiving nurse during transfer of care?",
-  answers: [
-    "Give a clear handoff report with important findings and treatments",
-    "Only say the patient's name",
-    "Leave before giving any report",
-    "Tell jokes instead of medical information"
-  ],
-  correct: 0,
-  explanation: "A clear handoff helps the receiving team understand the patient's condition, care given, and any changes."
-},
-  {
-  chapter: 5,
-  topic: "Medical Terminology",
-  question: "What does the prefix 'brady-' mean?",
-  answers: [
-    "Fast",
-    "Slow",
-    "Above",
-    "Below"
-  ],
-  correct: 1,
-  explanation: "Brady- means slow, like bradycardia meaning a slow heart rate."
-},
-{
-  chapter: 5,
-  topic: "Medical Terminology",
-  question: "What does the prefix 'tachy-' mean?",
-  answers: [
-    "Slow",
-    "Fast",
-    "Painful",
-    "Normal"
-  ],
-  correct: 1,
-  explanation: "Tachy- means fast, like tachycardia meaning a fast heart rate."
-},
-{
-  chapter: 5,
-  topic: "Medical Terminology",
-  question: "What does the suffix '-itis' usually mean?",
-  answers: [
-    "Inflammation",
-    "Removal",
-    "Pain",
-    "New opening"
-  ],
-  correct: 0,
-  explanation: "-itis usually means inflammation, such as bronchitis or appendicitis."
-},
-{
-  chapter: 5,
-  topic: "Medical Terminology",
-  question: "What does the suffix '-algia' mean?",
-  answers: [
-    "Weakness",
-    "Pain",
-    "Breathing",
-    "Swelling"
-  ],
-  correct: 1,
-  explanation: "-algia means pain, such as neuralgia meaning nerve pain."
-},
-{
-  chapter: 5,
-  topic: "Medical Terminology",
-  question: "What does the root word 'cardi' refer to?",
-  answers: [
-    "Lung",
-    "Heart",
-    "Brain",
-    "Stomach"
-  ],
-  correct: 1,
-  explanation: "Cardi refers to the heart, like cardiac meaning related to the heart."
-},
-{
-  chapter: 5,
-  topic: "Medical Terminology",
-  question: "What does the root word 'pulmon' refer to?",
-  answers: [
-    "Lungs",
-    "Kidneys",
-    "Skin",
-    "Bones"
-  ],
-  correct: 0,
-  explanation: "Pulmon refers to the lungs, like pulmonary meaning related to the lungs."
-},
-{
-  chapter: 5,
-  topic: "Medical Terminology",
-  question: "What does 'hypo-' usually mean?",
-  answers: [
-    "High or excessive",
-    "Low or below normal",
-    "Around",
-    "Between"
-  ],
-  correct: 1,
-  explanation: "Hypo- means low or below normal, like hypoglycemia meaning low blood sugar."
-},
-{
-  chapter: 5,
-  topic: "Medical Terminology",
-  question: "What does 'hyper-' usually mean?",
-  answers: [
-    "Low",
-    "High or excessive",
-    "Behind",
-    "Inside"
-  ],
-  correct: 1,
-  explanation: "Hyper- means high or excessive, like hypertension meaning high blood pressure."
-},
-{
-  chapter: 5,
-  topic: "Medical Terminology",
-  question: "What does 'dyspnea' mean?",
-  answers: [
-    "Chest pain",
-    "Difficulty breathing",
-    "Low blood pressure",
-    "Vomiting blood"
-  ],
-  correct: 1,
-  explanation: "Dyspnea means difficulty breathing or shortness of breath."
-},
-{
-  chapter: 5,
-  topic: "Medical Terminology",
-  question: "What does 'cyanosis' mean?",
-  answers: [
-    "Yellowing of the skin",
-    "Bluish color of the skin or mucous membranes",
-    "Red rash",
-    "Normal skin color"
-  ],
-  correct: 1,
-  explanation: "Cyanosis is a bluish color that can suggest poor oxygenation."
-},
   {
   chapter: 6,
   topic: "The Human Body",
@@ -832,135 +152,589 @@ const questionBank = [
   correct: 0,
   explanation: "The nervous system includes the brain, spinal cord, and nerves. It controls body functions and responses."
 },
-  {
-  chapter: 7,
-  topic: "Life Span Development",
-  question: "Why are infants and young children at higher risk for airway problems?",
+{
+  chapter: 6,
+  topic: "Anatomy and Physiology",
+  question: "Which term means the structure of the body and where body parts are located?",
   answers: [
-    "They have larger airways than adults",
-    "Their airways are smaller and easier to block",
-    "They breathe only through their mouth",
-    "They do not need oxygen"
+    "Anatomy",
+    "Physiology",
+    "Pathophysiology",
+    "Perfusion"
   ],
-  correct: 1,
-  explanation: "Children have smaller airways, so swelling, mucus, or poor positioning can affect breathing faster."
+  correct: 0,
+  explanation: "Anatomy is body structure. EMTs use anatomy to describe locations and injuries accurately."
 },
 {
-  chapter: 7,
-  topic: "Life Span Development",
-  question: "Which age group may have more fragile bones and slower healing?",
+  chapter: 6,
+  topic: "Anatomy and Physiology",
+  question: "Which term means how disease or injury changes normal body function?",
   answers: [
-    "Newborns",
-    "Teenagers",
-    "Older adults",
-    "Toddlers"
+    "Anatomy",
+    "Physiology",
+    "Pathophysiology",
+    "Topography"
   ],
   correct: 2,
-  explanation: "Older adults may have weaker bones, less muscle mass, and slower recovery from illness or injury."
+  explanation: "Pathophysiology explains how illness or injury disrupts normal physiology."
 },
 {
-  chapter: 7,
-  topic: "Infants",
-  question: "Which finding can be normal in infants compared with adults?",
+  chapter: 6,
+  topic: "Body Planes",
+  question: "Right and left in anatomy are always based on whose right and left?",
   answers: [
-    "Faster heart rate and breathing rate",
-    "No need for oxygen",
-    "No pulse",
-    "Very low breathing rate"
+    "The EMT's",
+    "The patient's",
+    "The driver’s",
+    "The receiving nurse’s"
+  ],
+  correct: 1,
+  explanation: "Anatomic directions are always from the patient’s perspective."
+},
+{
+  chapter: 6,
+  topic: "Body Planes",
+  question: "Which plane divides the body into front and back portions?",
+  answers: [
+    "Sagittal plane",
+    "Frontal or coronal plane",
+    "Transverse plane",
+    "Midsagittal plane"
+  ],
+  correct: 1,
+  explanation: "The frontal, or coronal, plane divides the body into anterior and posterior portions."
+},
+{
+  chapter: 6,
+  topic: "Skeletal System",
+  question: "Which items are part of the axial skeleton? Select all that apply.",
+  answers: [
+    "Skull",
+    "Spine",
+    "Ribs and sternum",
+    "Arms and legs"
+  ],
+  correct: [0, 1, 2],
+  explanation: "The axial skeleton includes the skull, spinal column, ribs, and sternum. Arms and legs are appendicular skeleton."
+},
+{
+  chapter: 6,
+  topic: "Musculoskeletal System",
+  question: "Which pairing is correct?",
+  answers: [
+    "Ligaments connect muscle to bone; tendons connect bone to bone",
+    "Ligaments connect bone to bone; tendons connect muscle to bone",
+    "Cartilage connects muscle to skin",
+    "Skeletal muscle is involuntary"
+  ],
+  correct: 1,
+  explanation: "Ligaments connect bone to bone. Tendons connect muscle to bone. Skeletal muscle is voluntary."
+},
+{
+  chapter: 6,
+  topic: "Spine",
+  question: "Which spine section has 7 vertebrae and is located in the neck?",
+  answers: [
+    "Cervical",
+    "Thoracic",
+    "Lumbar",
+    "Sacral"
   ],
   correct: 0,
-  explanation: "Infants normally have faster heart rates and respiratory rates than adults."
+  explanation: "The cervical spine has 7 vertebrae and is located in the neck."
 },
 {
-  chapter: 7,
-  topic: "Children",
-  question: "Why should EMTs involve a parent or caregiver when assessing a child?",
+  chapter: 6,
+  topic: "Spine",
+  question: "A suspected injury to the head, neck, or spine is concerning because it can affect which functions? Select all that apply.",
   answers: [
-    "The caregiver can help calm the child and provide history",
-    "The caregiver should do all patient care",
-    "Children never need assessment",
-    "It makes documentation unnecessary"
+    "Breathing",
+    "Movement",
+    "Sensation",
+    "Hair color"
+  ],
+  correct: [0, 1, 2],
+  explanation: "Spinal or nervous system injury can affect breathing, movement, and sensation."
+},
+{
+  chapter: 6,
+  topic: "Respiratory System",
+  question: "Which airway route is in the correct order?",
+  answers: [
+    "Alveoli, bronchioles, trachea, mouth",
+    "Nose or mouth, pharynx, larynx, trachea, bronchi, bronchioles, alveoli",
+    "Trachea, larynx, pharynx, bronchi, alveoli",
+    "Mouth, aorta, bronchi, capillaries, alveoli"
+  ],
+  correct: 1,
+  explanation: "Air flows from the nose or mouth through the pharynx, larynx, trachea, bronchi, bronchioles, and finally the alveoli."
+},
+{
+  chapter: 6,
+  topic: "Respiratory System",
+  question: "Where does oxygen and carbon dioxide exchange occur?",
+  answers: [
+    "Alveoli",
+    "Larynx",
+    "Trachea",
+    "Diaphragm"
   ],
   correct: 0,
-  explanation: "A familiar caregiver can reduce fear and give important information about the child."
+  explanation: "The alveoli are tiny air sacs where gas exchange occurs."
 },
 {
-  chapter: 7,
-  topic: "Adolescents",
-  question: "When caring for an adolescent, what approach is usually best?",
+  chapter: 6,
+  topic: "Respiratory System",
+  question: "Which findings can suggest inadequate breathing? Select all that apply.",
   answers: [
-    "Talk only to the parent",
-    "Treat them with respect and include them in communication",
-    "Ignore their privacy",
-    "Use baby talk"
+    "Unable to speak in full sentences",
+    "Accessory muscle use",
+    "Cyanosis",
+    "Quiet, regular breathing with normal skin color"
+  ],
+  correct: [0, 1, 2],
+  explanation: "Trouble speaking, accessory muscle use, and cyanosis can indicate inadequate breathing. Quiet, regular breathing with normal color is reassuring."
+},
+{
+  chapter: 6,
+  topic: "Respiratory System",
+  question: "What are agonal gasps?",
+  answers: [
+    "Normal deep breaths during sleep",
+    "Occasional gasping breaths that are not adequate breathing",
+    "Fast but effective breathing",
+    "A normal pediatric breathing pattern"
   ],
   correct: 1,
-  explanation: "Adolescents often value independence and privacy, so respectful communication matters."
+  explanation: "Agonal gasps can occur in cardiac arrest and should not be treated as adequate breathing."
 },
 {
-  chapter: 7,
-  topic: "Adults",
-  question: "What is a major health concern that becomes more common in middle adulthood?",
+  chapter: 6,
+  topic: "Circulatory System",
+  question: "What does perfusion mean?",
   answers: [
-    "Teething",
-    "Heart disease risk",
-    "Learning to walk",
-    "First language development"
+    "The movement of air into the lungs",
+    "Adequate blood flow delivering oxygen and nutrients to tissues",
+    "The relaxation phase of the heart",
+    "The process of food digestion"
   ],
   correct: 1,
-  explanation: "Middle adulthood can bring higher risk for conditions like heart disease, hypertension, and diabetes."
+  explanation: "Perfusion means tissues are receiving enough blood, oxygen, and nutrients."
 },
 {
-  chapter: 7,
-  topic: "Older Adults",
-  question: "Why can assessment be more complicated in older adults?",
+  chapter: 6,
+  topic: "Circulatory System",
+  question: "Which statement correctly describes pulmonary circulation?",
   answers: [
-    "They never have medical history",
-    "They may have multiple conditions and medications",
-    "They cannot feel pain",
-    "They do not need transport"
+    "It carries oxygen-rich blood from the left heart to the body",
+    "It carries oxygen-poor blood from the right heart to the lungs and oxygen-rich blood back to the left heart",
+    "It only supplies the heart muscle",
+    "It carries blood from capillaries directly to the brain"
   ],
   correct: 1,
-  explanation: "Older adults may have chronic illnesses, multiple medications, and symptoms that appear differently."
+  explanation: "Pulmonary circulation moves blood between the right side of the heart and the lungs, then back to the left side of the heart."
 },
 {
-  chapter: 7,
-  topic: "Older Adults",
-  question: "Which issue is especially important to consider after an older adult falls?",
+  chapter: 6,
+  topic: "Heart",
+  question: "Which chamber pumps oxygen-rich blood to the body?",
   answers: [
-    "Only embarrassment",
-    "Possible fracture, head injury, or medical cause of the fall",
-    "No need for assessment",
-    "Only checking their shoes"
+    "Right atrium",
+    "Right ventricle",
+    "Left atrium",
+    "Left ventricle"
   ],
-  correct: 1,
-  explanation: "Falls in older adults can cause serious injury and may also be caused by an underlying medical problem."
+  correct: 3,
+  explanation: "The left ventricle is the strongest chamber and pumps oxygen-rich blood through the aorta to the body."
 },
 {
-  chapter: 7,
-  topic: "Development",
-  question: "What does life span development help EMTs understand?",
+  chapter: 6,
+  topic: "Heart",
+  question: "What is cardiac output?",
   answers: [
-    "How patient needs change by age",
-    "How to avoid assessment",
-    "How to diagnose every illness",
-    "How to skip communication"
+    "Heart rate multiplied by stroke volume",
+    "Blood pressure divided by pulse",
+    "Respiratory rate multiplied by oxygen saturation",
+    "The amount of air moved with one breath"
   ],
   correct: 0,
-  explanation: "Life span development helps EMTs adjust assessment and communication based on the patient’s age."
+  explanation: "Cardiac output is the amount of blood pumped in one minute: heart rate times stroke volume."
 },
 {
-  chapter: 7,
-  topic: "Communication",
-  question: "When talking to an older adult patient, what should an EMT do?",
+  chapter: 6,
+  topic: "Blood Flow",
+  question: "Which route best summarizes blood flow through the body?",
   answers: [
-    "Assume they are confused",
-    "Speak clearly and respectfully",
-    "Talk only to family",
-    "Rush through every question"
+    "Body, right heart, lungs, left heart, body",
+    "Body, left heart, lungs, right heart, body",
+    "Lungs, right heart, body, left heart, lungs",
+    "Aorta, lungs, vena cava, body"
+  ],
+  correct: 0,
+  explanation: "A simple way to remember circulation is body to right heart to lungs to left heart to body."
+},
+{
+  chapter: 6,
+  topic: "Blood Flow",
+  question: "Which pulmonary vessel test trap is correct?",
+  answers: [
+    "Pulmonary arteries carry oxygen-rich blood to the heart",
+    "Pulmonary veins carry oxygen-poor blood away from the heart",
+    "Pulmonary arteries carry oxygen-poor blood away from the heart to the lungs",
+    "Pulmonary veins and arteries both carry oxygen-rich blood"
+  ],
+  correct: 2,
+  explanation: "Pulmonary arteries carry oxygen-poor blood away from the heart to the lungs. Pulmonary veins carry oxygen-rich blood back to the heart."
+},
+{
+  chapter: 6,
+  topic: "Heart Diagram",
+  question: "In the diagram, what is label 1?",
+  image: "assets/heart-flow.png",
+  imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
+  answers: [
+    "Capillaries of the right lung",
+    "Superior vena cava",
+    "Pulmonary vein",
+    "Left ventricle"
+  ],
+  correct: 0,
+  explanation: "Label 1 points to the capillaries of the right lung, where gas exchange occurs."
+},
+{
+  chapter: 6,
+  topic: "Heart Diagram",
+  question: "In the diagram, what is label 2?",
+  image: "assets/heart-flow.png",
+  imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
+  answers: [
+    "Inferior vena cava",
+    "Superior vena cava",
+    "Aorta",
+    "Pulmonary artery"
   ],
   correct: 1,
-  explanation: "Older adults should be treated with respect. Speak clearly, allow time, and do not assume confusion."
+  explanation: "Label 2 points to the superior vena cava, which returns oxygen-poor blood from the upper body to the heart."
+},
+{
+  chapter: 6,
+  topic: "Heart Diagram",
+  question: "In the diagram, what is label 3?",
+  image: "assets/heart-flow.png",
+  imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
+  answers: [
+    "Capillaries of the upper body",
+    "Capillaries of the left lung",
+    "Pulmonary vein",
+    "Right atrium"
+  ],
+  correct: 0,
+  explanation: "Label 3 points to the capillaries of the upper body, where oxygen is delivered to tissues and carbon dioxide is picked up."
+},
+{
+  chapter: 6,
+  topic: "Heart Diagram",
+  question: "In the diagram, what is label 4?",
+  image: "assets/heart-flow.png",
+  imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
+  answers: [
+    "Pulmonary artery",
+    "Inferior vena cava",
+    "Oxygenated blood/systemic artery going to the upper body",
+    "Right ventricle"
+  ],
+  correct: 2,
+  explanation: "Label 4 points to oxygenated blood in a systemic artery going to the upper body."
+},
+{
+  chapter: 6,
+  topic: "Heart Diagram",
+  question: "In the diagram, what is label 5?",
+  image: "assets/heart-flow.png",
+  imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
+  answers: [
+    "Aorta",
+    "Pulmonary vein",
+    "Right atrium",
+    "Inferior vena cava"
+  ],
+  correct: 0,
+  explanation: "Label 5 points to the aorta, the major artery carrying oxygenated blood from the left ventricle to the body."
+},
+{
+  chapter: 6,
+  topic: "Heart Diagram",
+  question: "In the diagram, what is label 6?",
+  image: "assets/heart-flow.png",
+  imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
+  answers: [
+    "Pulmonary vein",
+    "Pulmonary artery",
+    "Aorta",
+    "Left atrium"
+  ],
+  correct: 1,
+  explanation: "Label 6 points to the pulmonary artery, which carries oxygen-poor blood from the heart to the lungs."
+},
+{
+  chapter: 6,
+  topic: "Heart Diagram",
+  question: "In the diagram, what is label 7?",
+  image: "assets/heart-flow.png",
+  imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
+  answers: [
+    "Capillaries of the right lung",
+    "Left ventricle",
+    "Capillaries of the left lung",
+    "Superior vena cava"
+  ],
+  correct: 2,
+  explanation: "Label 7 points to the capillaries of the left lung, where blood releases carbon dioxide and picks up oxygen."
+},
+{
+  chapter: 6,
+  topic: "Heart Diagram",
+  question: "In the diagram, what is label 8?",
+  image: "assets/heart-flow.png",
+  imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
+  answers: [
+    "Pulmonary artery",
+    "Aorta",
+    "Right ventricle",
+    "Pulmonary vein"
+  ],
+  correct: 3,
+  explanation: "Label 8 points to the pulmonary vein, which carries oxygenated blood from the lungs back to the heart."
+},
+{
+  chapter: 6,
+  topic: "Heart Diagram",
+  question: "In the diagram, what is label 9?",
+  image: "assets/heart-flow.png",
+  imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
+  answers: [
+    "Left atrium",
+    "Left ventricle",
+    "Right atrium",
+    "Inferior vena cava"
+  ],
+  correct: 0,
+  explanation: "Label 9 next to the heart points to the left atrium, which receives oxygenated blood from the pulmonary veins."
+},
+{
+  chapter: 6,
+  topic: "Heart Diagram",
+  question: "In the diagram, what is label 10?",
+  image: "assets/heart-flow.png",
+  imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
+  answers: [
+    "Right ventricle",
+    "Left atrium",
+    "Left ventricle",
+    "Pulmonary artery"
+  ],
+  correct: 2,
+  explanation: "Label 10 points to the left ventricle, which pumps oxygenated blood into the aorta."
+},
+{
+  chapter: 6,
+  topic: "Heart Diagram",
+  question: "In the diagram, what is label 11?",
+  image: "assets/heart-flow.png",
+  imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
+  answers: [
+    "Superior vena cava",
+    "Inferior vena cava",
+    "Aorta",
+    "Pulmonary vein"
+  ],
+  correct: 1,
+  explanation: "Label 11 points to the inferior vena cava, which returns oxygen-poor blood from the lower body to the heart."
+},
+{
+  chapter: 6,
+  topic: "Heart Diagram",
+  question: "In the diagram, what is label 12?",
+  image: "assets/heart-flow.png",
+  imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
+  answers: [
+    "Right atrium",
+    "Left atrium",
+    "Right ventricle",
+    "Aorta"
+  ],
+  correct: 0,
+  explanation: "Label 12 points to the right atrium, which receives oxygen-poor blood from the vena cava."
+},
+{
+  chapter: 6,
+  topic: "Heart Diagram",
+  question: "In the diagram, what is label 13?",
+  image: "assets/heart-flow.png",
+  imageAlt: "Numbered diagram of blood flow through the heart, lungs, and body.",
+  answers: [
+    "Left ventricle",
+    "Pulmonary vein",
+    "Right atrium",
+    "Right ventricle"
+  ],
+  correct: 3,
+  explanation: "Label 13 points to the right ventricle, which pumps oxygen-poor blood toward the lungs."
+},{
+  chapter: 6,
+  topic: "Blood Vessels",
+  question: "Which statements about arteries are correct? Select all that apply.",
+  answers: [
+    "They carry blood away from the heart",
+    "They are usually high-pressure vessels",
+    "A severed artery may bleed in spurts",
+    "They always carry oxygen-poor blood"
+  ],
+  correct: [0, 1, 2],
+  explanation: "Arteries carry blood away from the heart, are usually high-pressure, and arterial bleeding may spurt. Most arteries carry oxygen-rich blood, except pulmonary arteries."
+},
+{
+  chapter: 6,
+  topic: "Blood Vessels",
+  question: "Where do oxygen, nutrients, carbon dioxide, and wastes exchange between blood and cells?",
+  answers: [
+    "Capillaries",
+    "Veins",
+    "Aorta",
+    "Vena cava"
+  ],
+  correct: 0,
+  explanation: "Capillaries are the tiny vessels where exchange occurs."
+},
+{
+  chapter: 6,
+  topic: "Blood",
+  question: "Which blood components help with clotting? Select all that apply.",
+  answers: [
+    "Platelets",
+    "Clotting factors",
+    "Hemoglobin",
+    "Leukocytes"
+  ],
+  correct: [0, 1],
+  explanation: "Platelets and clotting factors help form clots. Hemoglobin carries oxygen, and leukocytes fight infection."
+},
+{
+  chapter: 6,
+  topic: "Blood",
+  question: "Why is a spleen injury dangerous?",
+  answers: [
+    "The spleen contains air sacs",
+    "The spleen is highly vascular and can bleed severely",
+    "The spleen controls all breathing",
+    "The spleen pumps blood to the body"
+  ],
+  correct: 1,
+  explanation: "The spleen stores and filters blood and can bleed heavily when injured."
+},
+{
+  chapter: 6,
+  topic: "Blood Pressure and Shock",
+  question: "What does systole mean?",
+  answers: [
+    "The ventricle relaxes and fills",
+    "The left ventricle contracts and pumps blood out",
+    "Blood returns from the lungs",
+    "Capillaries exchange oxygen"
+  ],
+  correct: 1,
+  explanation: "Systole is the contraction phase. The systolic pressure is the top blood pressure number."
+},
+{
+  chapter: 6,
+  topic: "Blood Pressure and Shock",
+  question: "When blood loss occurs, how does the body try to compensate? Select all that apply.",
+  answers: [
+    "Increases heart rate",
+    "Constricts blood vessels",
+    "Redirects blood toward the brain, heart, and lungs",
+    "Stops perfusion to all organs equally"
+  ],
+  correct: [0, 1, 2],
+  explanation: "The body compensates by raising heart rate, constricting vessels, and protecting priority organs."
+},
+{
+  chapter: 6,
+  topic: "Blood Pressure and Shock",
+  question: "What is shock?",
+  answers: [
+    "Widespread inadequate perfusion",
+    "Normal blood flow to tissues",
+    "A fast respiratory rate only",
+    "A normal response to exercise"
+  ],
+  correct: 0,
+  explanation: "Shock is widespread hypoperfusion, meaning tissues are not getting enough blood and oxygen."
+},
+{
+  chapter: 6,
+  topic: "Nervous System",
+  question: "Which structures make up the central nervous system?",
+  answers: [
+    "Brain and spinal cord",
+    "Arms and legs",
+    "Heart and blood vessels",
+    "Skin and sweat glands"
+  ],
+  correct: 0,
+  explanation: "The central nervous system includes the brain and spinal cord."
+},
+{
+  chapter: 6,
+  topic: "Nervous System",
+  question: "Which brain part controls breathing, heart rate, blood pressure, and consciousness?",
+  answers: [
+    "Cerebrum",
+    "Cerebellum",
+    "Brain stem",
+    "Pancreas"
+  ],
+  correct: 2,
+  explanation: "The brain stem controls vital functions such as breathing, heart rate, blood pressure, and consciousness."
+},
+{
+  chapter: 6,
+  topic: "Skin",
+  question: "Which skin findings can indicate life threats or poor perfusion? Select all that apply.",
+  answers: [
+    "Pale skin",
+    "Cool, clammy skin",
+    "Blue or cyanotic skin",
+    "Warm, dry, normal-colored skin after resting"
+  ],
+  correct: [0, 1, 2],
+  explanation: "Pale, cool and clammy, or cyanotic skin can suggest poor perfusion, shock, or low oxygen."
+},
+{
+  chapter: 6,
+  topic: "Body Systems",
+  question: "Which organs are part of the urinary system? Select all that apply.",
+  answers: [
+    "Kidneys",
+    "Ureters",
+    "Bladder",
+    "Alveoli"
+  ],
+  correct: [0, 1, 2],
+  explanation: "The urinary system includes kidneys, ureters, bladder, and urethra. Alveoli belong to the respiratory system."
+},
+{
+  chapter: 6,
+  topic: "Endocrine and Lymphatic Systems",
+  question: "Which statements are correct? Select all that apply.",
+  answers: [
+    "The pancreas helps regulate blood glucose",
+    "The adrenal glands release epinephrine and norepinephrine during stress",
+    "The lymphatic system supports immunity and fluid balance",
+    "The gallbladder is the main organ of breathing"
+  ],
+  correct: [0, 1, 2],
+  explanation: "The pancreas, adrenal glands, and lymphatic system all have important regulatory or immune roles. The gallbladder is part of digestion."
 },
   {
   chapter: 8,
@@ -1486,115 +1260,10 @@ const questionBank = [
 ];
 
 const flashcards = [
-  // Chapter 1
-  { chapter: 1, term: "EMS System", definition: "A network of people, equipment, and resources that provides emergency medical care." },
-  { chapter: 1, term: "EMT", definition: "An emergency medical technician trained to provide basic emergency care and transport." },
-  { chapter: 1, term: "Medical Direction", definition: "Physician oversight that guides EMS care through protocols or direct orders." },
-  { chapter: 1, term: "Offline Medical Direction", definition: "Standing orders or protocols written before the call." },
-  { chapter: 1, term: "Online Medical Direction", definition: "Direct communication with a physician during a call." },
-  { chapter: 1, term: "Scope of Practice", definition: "The skills and care an EMT is legally allowed to perform." },
-  { chapter: 1, term: "Standard of Care", definition: "The level of care expected from a trained EMT in a similar situation." },
-  { chapter: 1, term: "Quality Improvement", definition: "Reviewing EMS care to improve patient outcomes and system performance." },
-  { chapter: 1, term: "Public Health", definition: "Community efforts to prevent illness, injury, and health problems." },
-  { chapter: 1, term: "Continuing Education", definition: "Ongoing training used to keep EMT knowledge and skills current." },
-  { chapter: 1, term: "911 Dispatch", definition: "The system that receives emergency calls and sends EMS, fire, or police resources." },
-  { chapter: 1, term: "First Responder", definition: "A trained person who arrives early and begins basic emergency care." },
-  { chapter: 1, term: "Paramedic", definition: "An advanced EMS provider trained in advanced life support skills." },
-  { chapter: 1, term: "Advanced EMT", definition: "EMS provider with training between EMT and paramedic level." },
-  { chapter: 1, term: "Patient Advocacy", definition: "Acting in the patient’s best interest and protecting their needs." },
-  { chapter: 1, term: "Protocols", definition: "Written care guidelines EMTs follow during patient treatment." },
-  { chapter: 1, term: "Certification", definition: "Recognition that a person has met training and testing requirements." },
-  { chapter: 1, term: "Licensure", definition: "Legal permission from the state to practice as an EMS provider." },
-  { chapter: 1, term: "Public Safety", definition: "Protecting the community from injury, illness, and dangerous situations." },
-  { chapter: 1, term: "EMS Chain of Care", definition: "The connected steps from emergency call to patient treatment and transport." },
 
-  // Chapter 2
-  { chapter: 2, term: "Scene Safety", definition: "Checking for danger before entering a scene or beginning patient care." },
-  { chapter: 2, term: "PPE", definition: "Personal protective equipment used to reduce exposure to hazards." },
-  { chapter: 2, term: "BSI", definition: "Body substance isolation; precautions to reduce contact with blood and body fluids." },
-  { chapter: 2, term: "Standard Precautions", definition: "Infection-control practices used with all patients." },
-  { chapter: 2, term: "Hand Hygiene", definition: "Cleaning hands to reduce the spread of infection." },
-  { chapter: 2, term: "Stress Reaction", definition: "Physical or emotional response to a difficult or traumatic event." },
-  { chapter: 2, term: "Burnout", definition: "Long-term emotional exhaustion and reduced motivation from repeated stress." },
-  { chapter: 2, term: "Exposure Incident", definition: "Contact with blood, body fluids, or infectious material." },
-  { chapter: 2, term: "Hazardous Scene", definition: "A scene with risks such as violence, traffic, fire, chemicals, or unstable structures." },
-  { chapter: 2, term: "Provider Wellness", definition: "Maintaining physical, mental, and emotional health as an EMS provider." },
-  { chapter: 2, term: "Gloves", definition: "PPE used to protect hands from blood and body fluids." },
-  { chapter: 2, term: "Eye Protection", definition: "PPE used to protect the eyes from splashes or droplets." },
-  { chapter: 2, term: "Mask", definition: "PPE used to reduce exposure to airborne or droplet hazards." },
-  { chapter: 2, term: "Gown", definition: "PPE used when clothing may be exposed to fluids." },
-  { chapter: 2, term: "Sharps Injury", definition: "Injury caused by a needle or sharp medical object." },
-  { chapter: 2, term: "Decontamination", definition: "Cleaning or removing harmful substances from people, equipment, or scenes." },
-  { chapter: 2, term: "Critical Incident Stress", definition: "Stress response after a highly traumatic EMS event." },
-  { chapter: 2, term: "Fatigue", definition: "Tiredness that can reduce focus, safety, and decision-making." },
-  { chapter: 2, term: "Situational Awareness", definition: "Being aware of surroundings, hazards, and changing scene conditions." },
-  { chapter: 2, term: "Violence Risk", definition: "Possible danger from aggressive patients, bystanders, weapons, or unsafe environments." },
 
-  // Chapter 3
-  { chapter: 3, term: "Consent", definition: "Permission from the patient to assess, treat, or transport." },
-  { chapter: 3, term: "Expressed Consent", definition: "Consent clearly given by words or actions." },
-  { chapter: 3, term: "Implied Consent", definition: "Consent assumed for an unresponsive patient who needs emergency care." },
-  { chapter: 3, term: "Informed Consent", definition: "Consent given after the patient understands risks, benefits, and options." },
-  { chapter: 3, term: "Refusal of Care", definition: "A competent patient’s decision to decline assessment, treatment, or transport." },
-  { chapter: 3, term: "Negligence", definition: "Failure to provide expected care, possibly causing harm." },
-  { chapter: 3, term: "Duty to Act", definition: "A legal obligation to provide care while on duty." },
-  { chapter: 3, term: "Abandonment", definition: "Ending care without transferring to an equal or higher-level provider." },
-  { chapter: 3, term: "Confidentiality", definition: "Protecting private patient information." },
-  { chapter: 3, term: "DNR", definition: "Do-not-resuscitate order; a medical order limiting resuscitation efforts." },
-  { chapter: 3, term: "Competent Patient", definition: "A patient who can understand information and make their own medical decisions." },
-  { chapter: 3, term: "Minor", definition: "A patient under the legal adult age who usually needs guardian consent." },
-  { chapter: 3, term: "Emancipated Minor", definition: "A minor legally treated as an adult in certain situations." },
-  { chapter: 3, term: "Assault", definition: "Creating fear of unwanted touching or harm." },
-  { chapter: 3, term: "Battery", definition: "Touching a patient without consent." },
-  { chapter: 3, term: "Good Samaritan Law", definition: "Law that may protect people who provide emergency care in good faith." },
-  { chapter: 3, term: "HIPAA", definition: "Law that protects private patient health information." },
-  { chapter: 3, term: "Ethics", definition: "Principles of right and wrong behavior in patient care." },
-  { chapter: 3, term: "Mandatory Reporting", definition: "Legal requirement to report certain situations, such as abuse or neglect." },
-  { chapter: 3, term: "Scope Violation", definition: "Performing care outside what an EMT is trained or legally allowed to do." },
 
-  // Chapter 4
-  { chapter: 4, term: "Communication", definition: "Sharing information clearly between EMTs, patients, dispatch, and hospital staff." },
-  { chapter: 4, term: "Therapeutic Communication", definition: "Communication that helps calm, support, and gather information from the patient." },
-  { chapter: 4, term: "Radio Report", definition: "A brief organized report given to the hospital or medical control." },
-  { chapter: 4, term: "PCR", definition: "Patient care report; the legal document of assessment, care, and transport." },
-  { chapter: 4, term: "Handoff Report", definition: "Report given when transferring care to another provider." },
-  { chapter: 4, term: "Objective Information", definition: "Facts you observe or measure, such as vital signs." },
-  { chapter: 4, term: "Subjective Information", definition: "Information the patient tells you, such as pain or symptoms." },
-  { chapter: 4, term: "Pertinent Negatives", definition: "Important findings the patient denies, such as no chest pain." },
-  { chapter: 4, term: "Documentation Error", definition: "A mistake in a report that should be corrected according to policy." },
-  { chapter: 4, term: "Professional Language", definition: "Clear, respectful, and objective wording in speech and reports." },
-  { chapter: 4, term: "Closed-Loop Communication", definition: "Repeating and confirming instructions to reduce mistakes." },
-  { chapter: 4, term: "Chief Complaint", definition: "The main reason the patient called EMS." },
-  { chapter: 4, term: "Medical Control", definition: "Physician or approved authority giving EMS guidance." },
-  { chapter: 4, term: "Dispatch Information", definition: "Information given before arrival, such as location and call type." },
-  { chapter: 4, term: "Verbal Report", definition: "Spoken handoff of patient information to another provider." },
-  { chapter: 4, term: "Written Report", definition: "Documented record of patient assessment and care." },
-  { chapter: 4, term: "Clear Speech", definition: "Speaking in a way that is easy to understand." },
-  { chapter: 4, term: "Plain Language", definition: "Simple wording that avoids confusing jargon." },
-  { chapter: 4, term: "Patient Quote", definition: "Exact words from the patient included in documentation." },
-  { chapter: 4, term: "Refusal Documentation", definition: "Record showing the patient refused care and was informed of risks." },
 
-  // Chapter 5
-  { chapter: 5, term: "Brady-", definition: "Slow." },
-  { chapter: 5, term: "Tachy-", definition: "Fast." },
-  { chapter: 5, term: "Hypo-", definition: "Low or below normal." },
-  { chapter: 5, term: "Hyper-", definition: "High or excessive." },
-  { chapter: 5, term: "-itis", definition: "Inflammation." },
-  { chapter: 5, term: "-algia", definition: "Pain." },
-  { chapter: 5, term: "Cardi", definition: "Heart." },
-  { chapter: 5, term: "Pulmon", definition: "Lung." },
-  { chapter: 5, term: "Dyspnea", definition: "Difficulty breathing." },
-  { chapter: 5, term: "Cyanosis", definition: "Bluish skin or mucous membranes from poor oxygenation." },
-  { chapter: 5, term: "A-", definition: "Without or absence of." },
-  { chapter: 5, term: "Dys-", definition: "Difficult, painful, or abnormal." },
-  { chapter: 5, term: "Eu-", definition: "Normal or good." },
-  { chapter: 5, term: "Peri-", definition: "Around." },
-  { chapter: 5, term: "Sub-", definition: "Below or under." },
-  { chapter: 5, term: "Supra-", definition: "Above." },
-  { chapter: 5, term: "Neuro", definition: "Nerve or nervous system." },
-  { chapter: 5, term: "Gastro", definition: "Stomach." },
-  { chapter: 5, term: "Hepato", definition: "Liver." },
-  { chapter: 5, term: "Renal", definition: "Kidney-related." },
 
   // Chapter 6
   { chapter: 6, term: "Anatomical Position", definition: "Standing upright, facing forward, arms at sides, palms forward." },
@@ -1617,28 +1286,78 @@ const flashcards = [
   { chapter: 6, term: "Shock", definition: "Poor perfusion causing inadequate oxygen delivery to tissues." },
   { chapter: 6, term: "Homeostasis", definition: "The body’s ability to maintain internal balance." },
   { chapter: 6, term: "Integumentary System", definition: "Skin and related structures that protect the body." },
+  { chapter: 6, term: "Anatomy", definition: "The structure of the body and where body parts are located." },
+  { chapter: 6, term: "Physiology", definition: "How the body works normally." },
+  { chapter: 6, term: "Pathophysiology", definition: "How disease or injury changes normal body function." },
+  { chapter: 6, term: "Midline", definition: "An imaginary line that divides the body into right and left sides." },
+  { chapter: 6, term: "Midsagittal Plane", definition: "Plane that divides the body into equal left and right halves." },
+  { chapter: 6, term: "Sagittal Plane", definition: "Plane that divides the body into left and right portions." },
+  { chapter: 6, term: "Frontal Plane", definition: "Plane that divides the body into front and back portions; also called coronal plane." },
+  { chapter: 6, term: "Transverse Plane", definition: "Plane that divides the body into upper and lower portions; also called axial plane." },
+  { chapter: 6, term: "Axial Skeleton", definition: "Skull, spine, ribs, and sternum." },
+  { chapter: 6, term: "Appendicular Skeleton", definition: "Arms, legs, shoulders, and pelvis." },
+  { chapter: 6, term: "Ligament", definition: "Connects bone to bone." },
+  { chapter: 6, term: "Tendon", definition: "Connects muscle to bone." },
+  { chapter: 6, term: "Cartilage", definition: "Smooth tissue covering the ends of bones at joints." },
+  { chapter: 6, term: "Joint", definition: "Location where two bones meet." },
+  { chapter: 6, term: "Skeletal Muscle", definition: "Voluntary muscle used for movement." },
+  { chapter: 6, term: "Cervical Spine", definition: "Seven vertebrae in the neck." },
+  { chapter: 6, term: "Thoracic Spine", definition: "Twelve vertebrae in the upper and mid back." },
+  { chapter: 6, term: "Lumbar Spine", definition: "Five vertebrae in the lower back." },
+  { chapter: 6, term: "Sacrum", definition: "Five fused vertebrae at the back of the pelvis." },
+  { chapter: 6, term: "Coccyx", definition: "Four fused vertebrae forming the tailbone." },
+  { chapter: 6, term: "Upper Airway", definition: "Nose, mouth, tongue, jaw, pharynx, and larynx." },
+  { chapter: 6, term: "Lower Airway", definition: "Trachea, bronchi, bronchioles, and alveoli." },
+  { chapter: 6, term: "Alveoli", definition: "Tiny air sacs where oxygen and carbon dioxide are exchanged." },
+  { chapter: 6, term: "Diaphragm", definition: "Main muscle of breathing." },
+  { chapter: 6, term: "Ventilation", definition: "Physical movement of air in and out of the lungs." },
+  { chapter: 6, term: "Respiration", definition: "Exchange of oxygen and carbon dioxide." },
+  { chapter: 6, term: "Inhalation", definition: "Breathing in." },
+  { chapter: 6, term: "Exhalation", definition: "Breathing out." },
+  { chapter: 6, term: "Agonal Gasps", definition: "Occasional gasping breaths in cardiac arrest; not adequate breathing." },
+  { chapter: 6, term: "Pulmonary Circulation", definition: "Blood flow from the right heart to the lungs and back to the left heart." },
+  { chapter: 6, term: "Systemic Circulation", definition: "Blood flow from the left heart to the body and back to the right heart." },
+  { chapter: 6, term: "Myocardium", definition: "Heart muscle." },
+  { chapter: 6, term: "Septum", definition: "Wall separating the right and left sides of the heart." },
+  { chapter: 6, term: "Atrium", definition: "Upper chamber of the heart." },
+  { chapter: 6, term: "Ventricle", definition: "Lower chamber of the heart." },
+  { chapter: 6, term: "Coronary Arteries", definition: "Arteries that supply oxygenated blood to the heart muscle." },
+  { chapter: 6, term: "Stroke Volume", definition: "Amount of blood ejected with one heartbeat." },
+  { chapter: 6, term: "Cardiac Output", definition: "Amount of blood pumped in one minute; heart rate times stroke volume." },
+  { chapter: 6, term: "Pulmonary Artery", definition: "Carries oxygen-poor blood away from the heart to the lungs." },
+  { chapter: 6, term: "Pulmonary Vein", definition: "Carries oxygen-rich blood from the lungs back to the heart." },
+  { chapter: 6, term: "Artery", definition: "Blood vessel that carries blood away from the heart." },
+  { chapter: 6, term: "Arteriole", definition: "Small branch of an artery that leads blood into capillaries." },
+  { chapter: 6, term: "Capillary", definition: "Tiny vessel where oxygen, nutrients, carbon dioxide, and wastes are exchanged." },
+  { chapter: 6, term: "Venule", definition: "Small vessel that collects blood leaving capillaries and leads into veins." },
+  { chapter: 6, term: "Vein", definition: "Blood vessel that carries blood back to the heart." },
+  { chapter: 6, term: "Spleen", definition: "Left upper abdominal organ that filters and stores blood and can bleed severely if injured." },
+  { chapter: 6, term: "Plasma", definition: "Liquid portion of blood that carries cells, nutrients, hormones, and wastes." },
+  { chapter: 6, term: "Erythrocytes", definition: "Red blood cells that carry oxygen using hemoglobin." },
+  { chapter: 6, term: "Hemoglobin", definition: "Protein in red blood cells that binds oxygen and gives blood its red color." },
+  { chapter: 6, term: "Leukocytes", definition: "White blood cells that fight infection." },
+  { chapter: 6, term: "Platelets", definition: "Blood components that help start clotting." },
+  { chapter: 6, term: "Clotting Factors", definition: "Blood proteins that help form stable clots." },
+  { chapter: 6, term: "Blood Pressure", definition: "Force of blood pushing against artery walls." },
+  { chapter: 6, term: "Systole", definition: "Contraction phase when the left ventricle pumps blood out." },
+  { chapter: 6, term: "Diastole", definition: "Relaxation phase when the ventricle fills with blood." },
+  { chapter: 6, term: "Hypoperfusion", definition: "Inadequate blood flow to organs and tissues." },
+  { chapter: 6, term: "Central Nervous System", definition: "Brain and spinal cord." },
+  { chapter: 6, term: "Peripheral Nervous System", definition: "Nerves outside the brain and spinal cord." },
+  { chapter: 6, term: "Somatic Nervous System", definition: "Controls voluntary actions such as walking." },
+  { chapter: 6, term: "Autonomic Nervous System", definition: "Controls involuntary functions such as heart rate and digestion." },
+  { chapter: 6, term: "Cerebrum", definition: "Brain area for thought, memory, sensation, and voluntary movement." },
+  { chapter: 6, term: "Cerebellum", definition: "Brain area for coordination and balance." },
+  { chapter: 6, term: "Brain Stem", definition: "Controls breathing, heart rate, blood pressure, and consciousness." },
+  { chapter: 6, term: "Epidermis", definition: "Outer layer of skin." },
+  { chapter: 6, term: "Dermis", definition: "Deeper skin layer containing sweat glands, nerves, and blood vessels." },
+  { chapter: 6, term: "Subcutaneous Tissue", definition: "Fatty tissue beneath the skin." },
+  { chapter: 6, term: "Cyanosis", definition: "Blue skin or mucous membranes that can indicate low oxygen." },
+  { chapter: 6, term: "Pancreas", definition: "Organ involved in digestion and blood glucose regulation." },
+  { chapter: 6, term: "Adrenal Glands", definition: "Endocrine glands that release epinephrine and norepinephrine during stress." },
+  { chapter: 6, term: "Urinary System", definition: "Kidneys, ureters, bladder, and urethra; filters blood and removes waste through urine." },
+  { chapter: 6, term: "Lymphatic System", definition: "System that supports immunity and fluid balance." },
 
-  // Chapter 7
-  { chapter: 7, term: "Life Span Development", definition: "Physical, mental, and emotional changes from birth through older adulthood." },
-  { chapter: 7, term: "Infant", definition: "A very young child with small airways and fast normal vital signs." },
-  { chapter: 7, term: "Toddler", definition: "A young child who may fear separation and have limited communication." },
-  { chapter: 7, term: "Preschool Age", definition: "A child who may use imagination and fear pain or injury." },
-  { chapter: 7, term: "School Age", definition: "A child who can usually answer simple questions and follow directions." },
-  { chapter: 7, term: "Adolescent", definition: "A teen who often values privacy, respect, and independence." },
-  { chapter: 7, term: "Middle Adult", definition: "Adult stage where risks like heart disease and diabetes may increase." },
-  { chapter: 7, term: "Older Adult", definition: "Patient who may have chronic illness, multiple medications, and fall risk." },
-  { chapter: 7, term: "Caregiver", definition: "A person who can help calm a child or provide patient history." },
-  { chapter: 7, term: "Fall Risk", definition: "Higher chance of injury from falling, especially in older adults." },
-  { chapter: 7, term: "Newborn", definition: "Very young infant with unique airway, breathing, and temperature needs." },
-  { chapter: 7, term: "Separation Anxiety", definition: "Fear or distress when a child is separated from a caregiver." },
-  { chapter: 7, term: "Stranger Anxiety", definition: "Fear of unfamiliar people, common in young children." },
-  { chapter: 7, term: "Privacy", definition: "Important need for adolescents and adults during assessment." },
-  { chapter: 7, term: "Chronic Disease", definition: "Long-term medical condition more common with aging." },
-  { chapter: 7, term: "Polypharmacy", definition: "Use of multiple medications, often seen in older adults." },
-  { chapter: 7, term: "Fragile Skin", definition: "Skin that tears or bruises easily, often in older adults." },
-  { chapter: 7, term: "Developmental Stage", definition: "A period of life with typical physical, emotional, and mental traits." },
-  { chapter: 7, term: "Pediatric Assessment", definition: "Assessment adjusted for a child’s size, age, and communication level." },
-  { chapter: 7, term: "Geriatric Assessment", definition: "Assessment adjusted for older adult risks, history, and medications." },
 
   // Chapter 8
   { chapter: 8, term: "Body Mechanics", definition: "Using safe posture and movement to prevent injury while lifting." },

@@ -6,6 +6,9 @@ let selectedChapter = null;
 let currentFlashcards = [];
 let flashcardIndex = 0;
 let flashcardShowingDefinition = false;
+let selectedAnswerIndexes = new Set();
+let lastQuizOrders = {};
+let lastAnswerOrders = {};
 
 let quizReview = [];
 
@@ -13,11 +16,101 @@ let stats = JSON.parse(localStorage.getItem("emtStats")) || {
   answered: 0,
   correct: 0
 };
+let todayStats = getTodayStats();
 
-let currentStreak = Number(localStorage.getItem("emtStreak")) || 0;
 let missedQuestions = JSON.parse(localStorage.getItem("missedQuestions")) || [];
+let username = localStorage.getItem("emtUsername") || "";
+let currentStreak = username
+  ? Number(localStorage.getItem(getStreakKey(username))) || Number(localStorage.getItem("emtStreak")) || 0
+  : 0;
+let leaderboard = JSON.parse(localStorage.getItem("emtLeaderboard")) || [];
 
 const chapterList = document.getElementById("chapter-list");
+
+function setupUsername() {
+  const modal = document.getElementById("username-modal");
+  const form = document.getElementById("username-form");
+  const input = document.getElementById("username-input");
+
+  input.value = username;
+  updateUsernameGreeting();
+
+  if (!username) {
+    showUsernameModal();
+  }
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const enteredUsername = input.value.trim();
+    if (!enteredUsername) return;
+
+    username = enteredUsername;
+    localStorage.setItem("emtUsername", username);
+    currentStreak = Number(localStorage.getItem(getStreakKey(username))) || 0;
+    updateUsernameGreeting();
+    updateStreak();
+    updateLeaderboard();
+    modal.classList.add("hidden");
+  });
+}
+
+function showUsernameModal() {
+  const modal = document.getElementById("username-modal");
+  const input = document.getElementById("username-input");
+
+  input.value = username;
+  modal.classList.remove("hidden");
+  input.focus();
+}
+
+function getStreakKey(name) {
+  return `emtStreak:${name.trim().toLowerCase()}`;
+}
+
+function getTodayKey() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+function getTodayStats() {
+  const savedStats = JSON.parse(localStorage.getItem("emtTodayStats")) || {};
+  const todayKey = getTodayKey();
+
+  if (savedStats.date === todayKey) {
+    return savedStats;
+  }
+
+  return {
+    date: todayKey,
+    answered: 0,
+    correct: 0,
+    missed: 0
+  };
+}
+
+function saveTodayStats() {
+  localStorage.setItem("emtTodayStats", JSON.stringify(todayStats));
+}
+
+function saveCurrentStreak() {
+  if (username) {
+    localStorage.setItem(getStreakKey(username), currentStreak);
+  }
+
+  localStorage.setItem("emtStreak", currentStreak);
+}
+
+function updateUsernameGreeting() {
+  const greeting = document.getElementById("user-greeting");
+  if (!greeting) return;
+
+  greeting.textContent = username ? `Welcome back, ${username}` : "";
+}
 
 function loadChapters() {
   chapterList.innerHTML = "";
@@ -62,13 +155,16 @@ function showScreen(screenId) {
     updateStats();
     updateStreak();
   }
+
+  if (screenId === "ranking-screen") {
+    loadRanking();
+  }
 }
 
 function startQuickQuiz(amount = 10) {
   selectedChapter = null;
 
-  const shuffledQuestions = shuffleArray(questionBank);
-  currentQuestions = shuffledQuestions.slice(0, amount);
+  currentQuestions = prepareQuestionsForQuiz(questionBank, `quick-${amount}`, amount);
 
   startQuiz();
 }
@@ -80,7 +176,7 @@ function startChapterQuiz(chapterId) {
     return question.chapter === chapterId;
   });
 
-  currentQuestions = shuffleArray(chapterQuestions);
+  currentQuestions = prepareQuestionsForQuiz(chapterQuestions, `chapter-${chapterId}`);
   startQuiz();
 }
 
@@ -94,6 +190,8 @@ function startQuiz() {
 
 function showQuestion() {
   const question = currentQuestions[currentIndex];
+  selectedAnswerIndexes = new Set();
+  const isMultiAnswer = Array.isArray(question.correct);
 
   document.getElementById("quiz-progress").textContent =
     `Question ${currentIndex + 1} of ${currentQuestions.length}`;
@@ -104,6 +202,20 @@ function showQuestion() {
   document.getElementById("question-topic").textContent = question.topic;
   document.getElementById("question-text").textContent = question.question;
 
+  const existingImage = document.getElementById("question-image");
+  if (existingImage) {
+    existingImage.remove();
+  }
+
+  if (question.image) {
+    const image = document.createElement("img");
+    image.id = "question-image";
+    image.className = "question-image";
+    image.src = question.image;
+    image.alt = question.imageAlt || "";
+    document.getElementById("question-text").after(image);
+  }
+
   const answerOptions = document.getElementById("answer-options");
   answerOptions.innerHTML = "";
 
@@ -113,22 +225,65 @@ function showQuestion() {
     const button = document.createElement("button");
     button.className = "answer-btn";
     button.textContent = answer;
-    button.onclick = () => selectAnswer(index);
+    button.onclick = () => {
+      if (isMultiAnswer) {
+        toggleMultiAnswer(index);
+      } else {
+        selectAnswer(index);
+      }
+    };
     answerOptions.appendChild(button);
   });
+
+  if (isMultiAnswer) {
+    const submitButton = document.createElement("button");
+    submitButton.id = "submit-multi-answer";
+    submitButton.className = "primary-btn hidden";
+    submitButton.textContent = "Submit Answers";
+    submitButton.onclick = submitMultiAnswer;
+    answerOptions.appendChild(submitButton);
+  }
 }
 
 function selectAnswer(selectedIndex) {
+  gradeAnswer([selectedIndex]);
+}
+
+function toggleMultiAnswer(index) {
+  const buttons = document.querySelectorAll(".answer-btn");
+  const submitButton = document.getElementById("submit-multi-answer");
+
+  if (selectedAnswerIndexes.has(index)) {
+    selectedAnswerIndexes.delete(index);
+    buttons[index].classList.remove("selected");
+  } else {
+    selectedAnswerIndexes.add(index);
+    buttons[index].classList.add("selected");
+  }
+
+  submitButton.classList.toggle("hidden", selectedAnswerIndexes.size === 0);
+}
+
+function submitMultiAnswer() {
+  gradeAnswer(Array.from(selectedAnswerIndexes));
+}
+
+function gradeAnswer(selectedIndexes) {
   const question = currentQuestions[currentIndex];
   const buttons = document.querySelectorAll(".answer-btn");
+  const submitButton = document.getElementById("submit-multi-answer");
+  const correctIndexes = Array.isArray(question.correct)
+    ? question.correct
+    : [question.correct];
+  const isCorrect = sameAnswers(selectedIndexes, correctIndexes);
 
   quizReview.push({
     question: question.question,
     topic: question.topic,
     chapter: question.chapter,
-    selectedAnswer: question.answers[selectedIndex],
-    correctAnswer: question.answers[question.correct],
-    isCorrect: selectedIndex === question.correct,
+    selectedAnswer: formatAnswers(question.answers, selectedIndexes),
+    correctAnswer: formatAnswers(question.answers, correctIndexes),
+    isCorrect,
     explanation: question.explanation
   });
 
@@ -136,33 +291,77 @@ function selectAnswer(selectedIndex) {
     button.disabled = true;
   });
 
-  stats.answered++;
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.classList.add("hidden");
+  }
 
-  if (selectedIndex === question.correct) {
+  stats.answered++;
+  todayStats.answered++;
+
+  if (isCorrect) {
     score++;
     stats.correct++;
+    todayStats.correct++;
     currentStreak++;
+    updateLeaderboard();
 
-    buttons[selectedIndex].classList.add("correct");
+    correctIndexes.forEach((index) => {
+      buttons[index].classList.add("correct");
+    });
     document.getElementById("feedback-title").textContent = "Correct";
   } else {
     currentStreak = 0;
 
-    buttons[selectedIndex].classList.add("wrong");
-    buttons[question.correct].classList.add("correct");
+    selectedIndexes.forEach((index) => {
+      if (!correctIndexes.includes(index)) {
+        buttons[index].classList.add("wrong");
+      }
+    });
+
+    correctIndexes.forEach((index) => {
+      buttons[index].classList.add("correct");
+    });
     document.getElementById("feedback-title").textContent = "Not quite";
 
     saveMissedQuestion(question);
+    todayStats.missed++;
   }
 
   localStorage.setItem("emtStats", JSON.stringify(stats));
-  localStorage.setItem("emtStreak", currentStreak);
+  saveTodayStats();
+  saveCurrentStreak();
 
   updateStats();
   updateStreak();
 
   document.getElementById("feedback-text").textContent = question.explanation;
   document.getElementById("feedback-box").classList.remove("hidden");
+}
+
+function sameAnswers(selectedIndexes, correctIndexes) {
+  if (selectedIndexes.length !== correctIndexes.length) return false;
+
+  const selected = [...selectedIndexes].sort((a, b) => a - b);
+  const correct = [...correctIndexes].sort((a, b) => a - b);
+
+  return selected.every((index, position) => index === correct[position]);
+}
+
+function formatAnswers(answers, indexes) {
+  return [...indexes]
+    .sort((a, b) => a - b)
+    .map((index) => answers[index])
+    .join("; ");
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 function saveMissedQuestion(question) {
@@ -196,7 +395,7 @@ function loadMissedQuestions() {
         <div class="missed-card">
           <p class="missed-topic">Chapter ${item.chapter} • ${item.topic}</p>
           <h3>${item.question}</h3>
-          <p><strong>Answer:</strong> ${item.answers[item.correct]}</p>
+          <p><strong>Answer:</strong> ${formatAnswers(item.answers, Array.isArray(item.correct) ? item.correct : [item.correct])}</p>
           <p>${item.explanation}</p>
         </div>
       `).join("")}
@@ -256,6 +455,87 @@ function restartQuiz() {
 
 function goHome() {
   showScreen("home-screen");
+}
+
+function prepareQuestionsForQuiz(questions, quizKey, amount = questions.length) {
+  let randomizedQuestions = shuffleArray(questions).slice(0, amount);
+  const questionOrder = randomizedQuestions.map((question) => question.question).join("|");
+
+  if (randomizedQuestions.length > 1 && lastQuizOrders[quizKey] === questionOrder) {
+    randomizedQuestions = rotateUntilNewOrder(
+      randomizedQuestions,
+      (items) => items.map((question) => question.question).join("|"),
+      [lastQuizOrders[quizKey]]
+    );
+  }
+
+  lastQuizOrders[quizKey] = randomizedQuestions
+    .map((question) => question.question)
+    .join("|");
+
+  return randomizedQuestions.map((question) => shuffleQuestionAnswers(question));
+}
+
+function shuffleQuestionAnswers(question) {
+  const correctIndexes = Array.isArray(question.correct)
+    ? question.correct
+    : [question.correct];
+
+  let answerPairs = question.answers.map((answer, index) => ({
+    answer,
+    originalIndex: index
+  }));
+
+  answerPairs = shuffleArray(answerPairs);
+
+  const originalOrder = question.answers.join("|");
+  const answerOrder = answerPairs.map((pair) => pair.answer).join("|");
+  const questionKey = question.question;
+
+  if (
+    answerPairs.length > 1 &&
+    (answerOrder === originalOrder || lastAnswerOrders[questionKey] === answerOrder)
+  ) {
+    answerPairs = rotateUntilNewOrder(
+      answerPairs,
+      (items) => items.map((pair) => pair.answer).join("|"),
+      [originalOrder, lastAnswerOrders[questionKey]]
+    );
+  }
+
+  lastAnswerOrders[questionKey] = answerPairs
+    .map((pair) => pair.answer)
+    .join("|");
+
+  const shuffledAnswers = answerPairs.map((pair) => pair.answer);
+  const shuffledCorrectIndexes = answerPairs
+    .map((pair, index) => correctIndexes.includes(pair.originalIndex) ? index : null)
+    .filter((index) => index !== null);
+
+  return {
+    ...question,
+    answers: shuffledAnswers,
+    correct: Array.isArray(question.correct) ? shuffledCorrectIndexes : shuffledCorrectIndexes[0]
+  };
+}
+
+function rotateArray(array) {
+  return [...array.slice(1), array[0]];
+}
+
+function rotateUntilNewOrder(array, getSignature, blockedSignatures) {
+  const blocked = blockedSignatures.filter(Boolean);
+  let rotated = [...array];
+
+  for (let attempt = 0; attempt < array.length; attempt++) {
+    rotated = rotateArray(rotated);
+
+    if (!blocked.includes(getSignature(rotated))) {
+      return rotated;
+    }
+  }
+
+  return array;
 }
 
 function shuffleArray(array) {
@@ -374,16 +654,34 @@ function updateStats() {
   const totalAnswered = document.getElementById("total-answered");
   const accuracyRate = document.getElementById("accuracy-rate");
   const missedCount = document.getElementById("missed-count");
+  const todayAnswered = document.getElementById("today-answered");
+  const todayAccuracyRate = document.getElementById("today-accuracy-rate");
+  const todayMissedCount = document.getElementById("today-missed-count");
 
-  if (!totalAnswered || !accuracyRate || !missedCount) return;
+  if (
+    !totalAnswered ||
+    !accuracyRate ||
+    !missedCount ||
+    !todayAnswered ||
+    !todayAccuracyRate ||
+    !todayMissedCount
+  ) return;
+
+  todayStats = getTodayStats();
 
   const accuracy = stats.answered === 0
     ? 0
     : Math.round((stats.correct / stats.answered) * 100);
+  const todayAccuracy = todayStats.answered === 0
+    ? 0
+    : Math.round((todayStats.correct / todayStats.answered) * 100);
 
   totalAnswered.textContent = stats.answered;
   accuracyRate.textContent = `${accuracy}%`;
   missedCount.textContent = missedQuestions.length;
+  todayAnswered.textContent = todayStats.answered;
+  todayAccuracyRate.textContent = `${todayAccuracy}%`;
+  todayMissedCount.textContent = todayStats.missed;
 }
 
 function updateStreak() {
@@ -394,6 +692,61 @@ function updateStreak() {
   streakBadge.textContent = `🔥 ${currentStreak}`;
 }
 
+function updateLeaderboard() {
+  if (!username) return;
+
+  const existingEntry = leaderboard.find((entry) => {
+    return entry.username.toLowerCase() === username.toLowerCase();
+  });
+
+  if (existingEntry) {
+    existingEntry.username = username;
+    existingEntry.bestStreak = Math.max(existingEntry.bestStreak, currentStreak);
+  } else {
+    leaderboard.push({
+      username,
+      bestStreak: currentStreak
+    });
+  }
+
+  leaderboard = leaderboard
+    .sort((first, second) => second.bestStreak - first.bestStreak)
+    .slice(0, 5);
+
+  localStorage.setItem("emtLeaderboard", JSON.stringify(leaderboard));
+  loadRanking();
+}
+
+function loadRanking() {
+  const rankingList = document.getElementById("ranking-list");
+  if (!rankingList) return;
+
+  if (leaderboard.length === 0) {
+    rankingList.innerHTML = `
+      <div class="empty-card">
+        <h2>No rankings yet</h2>
+        <p>Answer questions correctly to start a streak.</p>
+      </div>
+    `;
+    return;
+  }
+
+  rankingList.innerHTML = leaderboard.map((entry, index) => {
+    return `
+      <div class="ranking-card">
+        <div class="ranking-place">#${index + 1}</div>
+        <div>
+          <p class="ranking-name">${escapeHtml(entry.username)}</p>
+          <p class="ranking-label">Best correct streak</p>
+        </div>
+        <div class="ranking-streak">${entry.bestStreak}</div>
+      </div>
+    `;
+  }).join("");
+}
+
+setupUsername();
 loadChapters();
 updateStats();
 updateStreak();
+loadRanking();

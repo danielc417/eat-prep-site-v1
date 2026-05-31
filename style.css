@@ -49,6 +49,13 @@ h1 {
   font-weight: 700;
 }
 
+.user-greeting {
+  margin: 4px 0 0;
+  color: #cbd5e1;
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .screen {
   display: none;
   padding: 0 18px 20px;
@@ -104,6 +111,47 @@ h1 {
   background: #1e293b;
   color: white;
   border: 1px solid #334155;
+}
+
+.username-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(2, 6, 23, 0.88);
+}
+
+.username-card {
+  width: min(100%, 360px);
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.username-card h2 {
+  margin: 4px 0 18px;
+  font-size: 24px;
+}
+
+.username-card input {
+  width: 100%;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  background: #020617;
+  color: #f8fafc;
+  font: inherit;
+  font-size: 16px;
+  padding: 15px;
+  outline: none;
+}
+
+.username-card input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
 }
 
 .section-title {
@@ -193,6 +241,15 @@ h1 {
   margin-bottom: 0;
 }
 
+.question-image {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  border: 1px solid #334155;
+  border-radius: 18px;
+  background: #020617;
+}
+
 .answer-list {
   display: grid;
   gap: 12px;
@@ -208,6 +265,11 @@ h1 {
   padding: 16px;
   font-size: 16px;
   line-height: 1.35;
+}
+
+.answer-btn.selected {
+  background: #0f766e;
+  border-color: #2dd4bf;
 }
 
 .answer-btn.correct {
@@ -237,6 +299,61 @@ h1 {
   line-height: 1.5;
 }
 
+.ranking-top {
+  margin-top: 8px;
+}
+
+.ranking-top h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.ranking-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.ranking-card {
+  display: grid;
+  grid-template-columns: 46px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 18px;
+  padding: 14px;
+}
+
+.ranking-place {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: #020617;
+  color: #38bdf8;
+  font-weight: 900;
+}
+
+.ranking-name {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.ranking-label {
+  margin: 3px 0 0;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.ranking-streak {
+  color: #f8fafc;
+  font-size: 18px;
+  font-weight: 900;
+}
+
 .hidden {
   display: none;
 }
@@ -252,7 +369,7 @@ h1 {
   backdrop-filter: blur(12px);
   border-top: 1px solid #334155;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   padding: 8px 8px 18px;
 }
 
@@ -425,11 +542,20 @@ h1 {
   border-color: #ef4444;
 }
 
+.stats-section {
+  margin: 18px 0;
+}
+
+.stats-section h3 {
+  margin: 0 0 10px;
+  color: #f8fafc;
+  font-size: 15px;
+}
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 9px;
-  margin: 18px 0;
 }
 
 .stat-card {
@@ -440,7 +566,7 @@ h1 {
   text-align: center;
 }
 
-.stat-card h3 {
+.stat-card h4 {
   margin: 0;
   color: #38bdf8;
   font-size: 22px;

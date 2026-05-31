@@ -13,6 +13,7 @@
       <div>
         <p class="eyebrow">EMT Study App</p>
         <h1>EMT Prep Hub</h1>
+        <p id="user-greeting" class="user-greeting"></p>
       </div>
       <div class="streak-badge">🔥 0</div>
     </header>
@@ -20,24 +21,47 @@
     <main>
       <section id="home-screen" class="screen active">
         <div class="hero-card">
-          <h2>Study Chapters 1–10</h2>
+          <h2>Study Chapters 6, 8, 9, and 10</h2>
           <p>Practice EMT questions, review missed answers, and build confidence before class.</p>
-          <div class="stats-grid">
-  <div class="stat-card">
-    <h3 id="total-answered">0</h3>
-    <p>Answered</p>
-  </div>
+          <div class="stats-section">
+            <h3>Lifetime</h3>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <h4 id="total-answered">0</h4>
+                <p>Answered</p>
+              </div>
 
-  <div class="stat-card">
-    <h3 id="accuracy-rate">0%</h3>
-    <p>Accuracy</p>
-  </div>
+              <div class="stat-card">
+                <h4 id="accuracy-rate">0%</h4>
+                <p>Accuracy</p>
+              </div>
 
-  <div class="stat-card">
-    <h3 id="missed-count">0</h3>
-    <p>Missed</p>
-  </div>
-</div>
+              <div class="stat-card">
+                <h4 id="missed-count">0</h4>
+                <p>Missed</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats-section">
+            <h3>Today</h3>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <h4 id="today-answered">0</h4>
+                <p>Answered</p>
+              </div>
+
+              <div class="stat-card">
+                <h4 id="today-accuracy-rate">0%</h4>
+                <p>Accuracy</p>
+              </div>
+
+              <div class="stat-card">
+                <h4 id="today-missed-count">0</h4>
+                <p>Missed</p>
+              </div>
+            </div>
+          </div>
           <div class="quiz-options">
   <button class="primary-btn" onclick="startQuickQuiz(10)">10 Questions</button>
   <button class="secondary-btn" onclick="startQuickQuiz(25)">25 Questions</button>
@@ -91,13 +115,7 @@
     <h2>Flashcards</h2>
     <select id="flashcard-chapter-select" onchange="loadFlashcards()">
       <option value="all">All Chapters</option>
-      <option value="1">Chapter 1</option>
-      <option value="2">Chapter 2</option>
-      <option value="3">Chapter 3</option>
-      <option value="4">Chapter 4</option>
-      <option value="5">Chapter 5</option>
       <option value="6">Chapter 6</option>
-      <option value="7">Chapter 7</option>
       <option value="8">Chapter 8</option>
       <option value="9">Chapter 9</option>
       <option value="10">Chapter 10</option>
@@ -130,6 +148,13 @@
           <p>Questions you miss will be saved here later.</p>
         </div>
       </section>
+      <section id="ranking-screen" class="screen">
+        <div class="ranking-top">
+          <h2>Top Streaks</h2>
+        </div>
+
+        <div id="ranking-list" class="ranking-list"></div>
+      </section>
     </main>
 
     <nav class="bottom-nav">
@@ -137,11 +162,29 @@
       <button onclick="showScreen('quiz-screen')">📝<span>Quiz</span></button>
       <button onclick="showScreen('flashcards-screen')">📚<span>Cards</span></button>
       <button onclick="showScreen('missed-screen')">⭐<span>Missed</span></button>
+      <button onclick="showScreen('ranking-screen')">🏆<span>Rank</span></button>
     </nav>
+
+    <div id="username-modal" class="username-modal hidden">
+      <form id="username-form" class="username-card">
+        <p class="eyebrow">Welcome</p>
+        <h2>Enter your username</h2>
+        <input
+          id="username-input"
+          type="text"
+          name="username"
+          autocomplete="nickname"
+          maxlength="24"
+          placeholder="Username"
+          required
+        />
+        <button class="primary-btn" type="submit">Start Studying</button>
+      </form>
+    </div>
 
   </div>
 
- <script src="questions.js"></script>
-<script src="script.js"></script>
+  <script src="data/questions.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
