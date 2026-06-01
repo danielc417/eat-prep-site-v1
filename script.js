@@ -6,6 +6,7 @@ import {
   getDoc,
   getDocs,
   limit,
+  onSnapshot,
   orderBy,
   query,
   serverTimestamp,
@@ -38,10 +39,24 @@ let currentStreak = username
   ? Number(localStorage.getItem(getStreakKey(username))) || Number(localStorage.getItem("emtStreak")) || 0
   : 0;
 let leaderboard = JSON.parse(localStorage.getItem("emtLeaderboard")) || [];
-let weeklyLeaderboard = JSON.parse(localStorage.getItem("emtWeeklyLeaderboard")) || [];
+let weeklyLeaderboard = [];
 let currentAuthAction = "login";
+let selectedAvatar = "assets/avatars/star-of-life.svg";
+let weeklyCorrectWeek = getWeekKey();
+let weeklyCorrectCount = 0;
+let weeklyRankingUnsubscribe = null;
 
 const chapterList = document.getElementById("chapter-list");
+const avatarOptions = [
+  { path: "assets/avatars/star-of-life.svg", label: "Star of Life" },
+  { path: "assets/avatars/med-bag.svg", label: "Medical Bag" },
+  { path: "assets/avatars/ambulance.svg", label: "Ambulance" },
+  { path: "assets/avatars/stethoscope.svg", label: "Stethoscope" },
+  { path: "assets/avatars/clipboard.svg", label: "Clipboard" },
+  { path: "assets/avatars/lungs.svg", label: "Lungs" },
+  { path: "assets/avatars/heart-monitor.svg", label: "Heart Monitor" },
+  { path: "assets/avatars/shield.svg", label: "EMS Shield" }
+];
 
 function setupUsername() {
   const modal = document.getElementById("username-modal");
@@ -128,17 +143,20 @@ async function createAccount(enteredUsername, enteredPassword) {
       username: enteredUsername,
       usernameLower: enteredUsername.toLowerCase(),
       passwordHash,
+      avatar: selectedAvatar,
       stats,
       todayStats,
       missedQuestions,
       currentStreak,
+      weeklyCorrectWeek: getWeekKey(),
+      weeklyCorrectCount: 0,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp()
     });
 
     return true;
   } catch (error) {
-    console.warn("Could not create account.", error);
+    console.error("Could not create account.", error);
     setLoginMessage(`Could not create account: ${getErrorMessage(error)}`);
     return false;
   }
@@ -165,7 +183,7 @@ async function loginAccount(enteredUsername, enteredPassword) {
     loadProgressFromUserData(userData);
     return true;
   } catch (error) {
-    console.warn("Could not log in.", error);
+    console.error("Could not log in.", error);
     setLoginMessage(`Could not log in: ${getErrorMessage(error)}`);
     return false;
   }
@@ -180,7 +198,7 @@ async function loadUserProgress() {
 
     loadProgressFromUserData(snapshot.data());
   } catch (error) {
-    console.warn("Could not load user progress.", error);
+    console.error("Could not load user progress.", error);
   }
 }
 
@@ -193,11 +211,18 @@ function loadProgressFromUserData(userData) {
     ? userData.missedQuestions
     : [];
   currentStreak = Number(userData.currentStreak) || 0;
+  selectedAvatar = getValidAvatarPath(userData.avatar);
+  weeklyCorrectWeek = userData.weeklyCorrectWeek || getWeekKey();
+  weeklyCorrectCount = weeklyCorrectWeek === getWeekKey()
+    ? Number(userData.weeklyCorrectCount) || 0
+    : 0;
 
   localStorage.setItem("emtStats", JSON.stringify(stats));
   localStorage.setItem("emtTodayStats", JSON.stringify(todayStats));
   localStorage.setItem("missedQuestions", JSON.stringify(missedQuestions));
   saveCurrentStreak();
+  renderAvatarPicker();
+  updateProfileAvatar();
   updateStats();
   updateStreak();
 }
@@ -213,10 +238,13 @@ async function saveUserProgress() {
       todayStats,
       missedQuestions,
       currentStreak,
+      avatar: selectedAvatar,
+      weeklyCorrectWeek,
+      weeklyCorrectCount,
       updatedAt: serverTimestamp()
     }, { merge: true });
   } catch (error) {
-    console.warn("Could not save user progress.", error);
+    console.error("Could not save user progress.", error);
   }
 }
 
@@ -302,6 +330,7 @@ function updateUsernameGreeting() {
     profileName.textContent = username;
   }
 
+  renderAvatarPicker();
   updateProfileAvatar();
 }
 
@@ -319,12 +348,30 @@ function closeProfileMenu() {
   profileMenu.classList.add("hidden");
 }
 
-function getProfilePictureKey(name) {
-  return `emtProfilePicture:${name.trim().toLowerCase()}`;
+function getValidAvatarPath(path) {
+  return avatarOptions.some((avatar) => avatar.path === path)
+    ? path
+    : avatarOptions[0].path;
 }
 
-function getStoredProfilePicture(name) {
-  return name ? localStorage.getItem(getProfilePictureKey(name)) : "";
+function renderAvatarPicker() {
+  const picker = document.getElementById("avatar-picker");
+  if (!picker) return;
+
+  picker.innerHTML = avatarOptions.map((avatar) => {
+    const isSelected = getValidAvatarPath(selectedAvatar) === avatar.path;
+
+    return `
+      <button
+        class="avatar-option ${isSelected ? "selected" : ""}"
+        type="button"
+        onclick="selectAvatar('${avatar.path}')"
+        aria-label="${escapeHtml(avatar.label)}"
+      >
+        <img src="${avatar.path}" alt="" />
+      </button>
+    `;
+  }).join("");
 }
 
 function updateProfileAvatar() {
@@ -334,30 +381,43 @@ function updateProfileAvatar() {
   ].filter(Boolean);
 
   const initials = username ? username.slice(0, 2).toUpperCase() : "?";
-  const profilePicture = getStoredProfilePicture(username);
+  const avatarPath = getValidAvatarPath(selectedAvatar);
 
   avatars.forEach((avatar) => {
     avatar.textContent = initials;
-    avatar.classList.toggle("has-image", Boolean(profilePicture));
-    avatar.style.backgroundImage = profilePicture ? `url(${profilePicture})` : "";
+    avatar.classList.add("has-image");
+    avatar.style.backgroundImage = `url(${avatarPath})`;
   });
 }
 
-function updateProfilePicture(event) {
-  const file = event.target.files?.[0];
-  if (!file || !username) return;
+async function selectAvatar(path) {
+  if (!username) return;
 
-  const reader = new FileReader();
-  reader.onload = () => {
-    localStorage.setItem(getProfilePictureKey(username), reader.result);
-    updateProfileAvatar();
-  };
-  reader.readAsDataURL(file);
+  selectedAvatar = getValidAvatarPath(path);
+  updateProfileAvatar();
+  renderAvatarPicker();
+
+  try {
+    await setDoc(doc(db, "users", getUserId(username)), {
+      username,
+      usernameLower: username.toLowerCase(),
+      avatar: selectedAvatar,
+      weeklyCorrectWeek,
+      weeklyCorrectCount,
+      updatedAt: serverTimestamp()
+    }, { merge: true });
+    loadRanking();
+  } catch (error) {
+    console.error("Could not save avatar selection.", error);
+  }
 }
 
 function logoutUser() {
   username = "";
   currentStreak = 0;
+  selectedAvatar = avatarOptions[0].path;
+  weeklyCorrectWeek = getWeekKey();
+  weeklyCorrectCount = 0;
   localStorage.removeItem("emtAuthUsername");
   localStorage.removeItem("emtUsername");
   closeProfileMenu();
@@ -1009,7 +1069,7 @@ async function updateLeaderboard() {
 
     await loadRanking();
   } catch (error) {
-    console.warn("Could not sync leaderboard with Firestore.", error);
+    console.error("Could not sync leaderboard with Firestore.", error);
   }
 }
 
@@ -1017,49 +1077,29 @@ async function updateWeeklyCorrectLeaderboard() {
   if (!username) return;
 
   const weekKey = getWeekKey();
-  const existingEntry = weeklyLeaderboard.find((entry) => {
-    return entry.username.toLowerCase() === username.toLowerCase();
-  });
-
-  if (existingEntry) {
-    existingEntry.correctCount++;
-    existingEntry.weekKey = weekKey;
-  } else {
-    weeklyLeaderboard.push({
-      username,
-      weekKey,
-      correctCount: 1
-    });
-  }
-
-  weeklyLeaderboard = weeklyLeaderboard
-    .filter((entry) => entry.weekKey === weekKey)
-    .sort((first, second) => second.correctCount - first.correctCount)
-    .slice(0, 5);
-  localStorage.setItem("emtWeeklyLeaderboard", JSON.stringify(weeklyLeaderboard));
-  loadWeeklyCorrectRanking();
 
   try {
-    const weeklyRef = doc(
-      db,
-      "weeklyCorrectLeaderboard",
-      weekKey,
-      "entries",
-      getLeaderboardId(username)
-    );
-    const snapshot = await getDoc(weeklyRef);
-    const savedCorrectCount = snapshot.exists() ? Number(snapshot.data().correctCount) || 0 : 0;
+    const userRef = doc(db, "users", getUserId(username));
+    const snapshot = await getDoc(userRef);
+    const userData = snapshot.exists() ? snapshot.data() : {};
+    const savedWeek = userData.weeklyCorrectWeek || weekKey;
+    const savedCorrectCount = savedWeek === weekKey
+      ? Number(userData.weeklyCorrectCount) || 0
+      : 0;
 
-    await setDoc(weeklyRef, {
+    weeklyCorrectWeek = weekKey;
+    weeklyCorrectCount = savedCorrectCount + 1;
+
+    await setDoc(userRef, {
       username,
       usernameLower: username.toLowerCase(),
-      correctCount: savedCorrectCount + 1,
+      avatar: selectedAvatar,
+      weeklyCorrectWeek,
+      weeklyCorrectCount,
       updatedAt: serverTimestamp()
     }, { merge: true });
-
-    await loadWeeklyCorrectRanking();
   } catch (error) {
-    console.warn("Could not sync weekly correct leaderboard with Firestore.", error);
+    console.error("Could not sync weekly correct stats with Firestore.", error);
   }
 }
 
@@ -1075,18 +1115,22 @@ async function loadRanking() {
     );
     const snapshot = await getDocs(leaderboardQuery);
 
+    const profileMap = await loadUserProfiles();
     leaderboard = snapshot.docs.map((snapshotDoc) => {
       const data = snapshotDoc.data();
+      const usernameLower = data.usernameLower || data.username?.toLowerCase() || "";
+      const profile = profileMap.get(usernameLower) || {};
 
       return {
         username: data.username,
-        bestStreak: Number(data.bestStreak) || 0
+        bestStreak: Number(data.bestStreak) || 0,
+        avatar: profile.avatar
       };
     });
 
     localStorage.setItem("emtLeaderboard", JSON.stringify(leaderboard));
   } catch (error) {
-    console.warn("Could not load Firestore leaderboard. Showing local scores.", error);
+    console.error("Could not load Firestore leaderboard. Showing local scores.", error);
   }
 
   renderRankingList(
@@ -1098,44 +1142,75 @@ async function loadRanking() {
   );
 }
 
-async function loadWeeklyCorrectRanking() {
+function loadWeeklyCorrectRanking() {
   const weeklyRankingList = document.getElementById("weekly-ranking-list");
   if (!weeklyRankingList) return;
 
   const weekKey = getWeekKey();
-  weeklyLeaderboard = weeklyLeaderboard.filter((entry) => entry.weekKey === weekKey);
 
-  try {
-    const weeklyQuery = query(
-      collection(db, "weeklyCorrectLeaderboard", weekKey, "entries"),
-      orderBy("correctCount", "desc"),
-      limit(5)
-    );
-    const snapshot = await getDocs(weeklyQuery);
+  if (weeklyRankingUnsubscribe) {
+    weeklyRankingUnsubscribe();
+  }
 
+  const usersQuery = query(
+    collection(db, "users"),
+    orderBy("weeklyCorrectCount", "desc"),
+    limit(25)
+  );
+
+  weeklyRankingUnsubscribe = onSnapshot(usersQuery, (snapshot) => {
     weeklyLeaderboard = snapshot.docs
       .map((snapshotDoc) => {
         const data = snapshotDoc.data();
 
         return {
           username: data.username,
-          correctCount: Number(data.correctCount) || 0
+          correctCount: Number(data.weeklyCorrectCount) || 0,
+          weekKey: data.weeklyCorrectWeek,
+          avatar: data.avatar
         };
       })
+      .filter((entry) => entry.weekKey === weekKey && entry.correctCount > 0)
       .slice(0, 5);
 
-    localStorage.setItem("emtWeeklyLeaderboard", JSON.stringify(weeklyLeaderboard));
-  } catch (error) {
-    console.warn("Could not load weekly correct leaderboard. Showing local scores.", error);
-  }
+    renderRankingList(
+      weeklyRankingList,
+      weeklyLeaderboard,
+      "correctCount",
+      "Correct this week",
+      "Answer questions correctly this week to appear here."
+    );
+  }, (error) => {
+    console.error("Could not listen to weekly correct ranking from Firestore.", error);
+    renderRankingList(
+      weeklyRankingList,
+      [],
+      "correctCount",
+      "Correct this week",
+      "Answer questions correctly this week to appear here."
+    );
+  });
+}
 
-  renderRankingList(
-    weeklyRankingList,
-    weeklyLeaderboard,
-    "correctCount",
-    "Correct this week",
-    "Answer questions correctly this week to appear here."
-  );
+async function loadUserProfiles() {
+  try {
+    const snapshot = await getDocs(collection(db, "users"));
+    const profiles = new Map();
+
+    snapshot.docs.forEach((snapshotDoc) => {
+      const data = snapshotDoc.data();
+      if (!data.usernameLower) return;
+
+      profiles.set(data.usernameLower, {
+        avatar: data.avatar
+      });
+    });
+
+    return profiles;
+  } catch (error) {
+    console.error("Could not load user profiles from Firestore.", error);
+    return new Map();
+  }
 }
 
 function renderRankingList(container, entries, scoreKey, label, emptyMessage) {
@@ -1150,17 +1225,14 @@ function renderRankingList(container, entries, scoreKey, label, emptyMessage) {
   }
 
   container.innerHTML = entries.map((entry, index) => {
-    const profilePicture = getStoredProfilePicture(entry.username);
+    const avatarPath = getValidAvatarPath(entry.avatar);
     const initials = entry.username ? entry.username.slice(0, 2).toUpperCase() : "?";
     const medal = getRankingMedal(index);
-    const avatarStyle = profilePicture
-      ? ` style="background-image: url('${profilePicture}')"`
-      : "";
 
     return `
       <div class="ranking-card">
         <div class="ranking-place ${medal.className}">${medal.label}</div>
-        <div class="ranking-avatar ${profilePicture ? "has-image" : ""}"${avatarStyle}>${escapeHtml(initials)}</div>
+        <div class="ranking-avatar has-image" style="background-image: url('${avatarPath}')">${escapeHtml(initials)}</div>
         <div>
           <p class="ranking-name">${escapeHtml(entry.username)}</p>
           <p class="ranking-label">${label}</p>
@@ -1200,9 +1272,9 @@ Object.assign(window, {
   restartQuiz,
   showReview,
   showScreen,
+  selectAvatar,
   startQuickQuiz,
-  toggleProfileMenu,
-  updateProfilePicture
+  toggleProfileMenu
 });
 
 setupUsername();

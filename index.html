@@ -212,10 +212,10 @@
             <p class="profile-menu-label">Profile</p>
           </div>
         </div>
-        <label class="secondary-btn profile-upload">
-          Add Profile Picture
-          <input id="profile-picture-input" type="file" accept="image/*" onchange="updateProfilePicture(event)" />
-        </label>
+        <div class="avatar-picker-section">
+          <p class="profile-menu-label">Choose Avatar</p>
+          <div id="avatar-picker" class="avatar-picker"></div>
+        </div>
         <button class="secondary-btn" onclick="logoutUser()" type="button">Log Out</button>
       </div>
     </div>

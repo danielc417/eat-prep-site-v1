@@ -231,13 +231,39 @@ h1 {
   font-size: 13px;
 }
 
-.profile-upload {
-  display: block;
-  text-align: center;
+.avatar-picker-section {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0;
 }
 
-.profile-upload input {
-  display: none;
+.avatar-picker {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.avatar-option {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border: 2px solid #334155;
+  border-radius: 14px;
+  background: #020617;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.avatar-option.selected {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
+}
+
+.avatar-option img {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  object-fit: cover;
 }
 
 .login-message {
