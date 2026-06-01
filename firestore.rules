@@ -26,5 +26,61 @@ service cloud.firestore {
         && request.resource.data.updatedAt == request.time;
       }
     }
+
+    match /users/{userId} {
+      allow read: if true;
+      allow create, update: if validUserDocument();
+
+      function validUserDocument() {
+        return request.resource.data.keys().hasOnly([
+          'username',
+          'usernameLower',
+          'passwordHash',
+          'stats',
+          'todayStats',
+          'missedQuestions',
+          'currentStreak',
+          'createdAt',
+          'updatedAt'
+        ])
+        && request.resource.data.passwordHash is string
+        && request.resource.data.passwordHash.size() == 64
+        && request.resource.data.username is string
+        && request.resource.data.username.size() > 0
+        && request.resource.data.username.size() <= 24
+        && request.resource.data.usernameLower is string
+        && request.resource.data.stats is map
+        && request.resource.data.todayStats is map
+        && request.resource.data.missedQuestions is list
+        && request.resource.data.missedQuestions.size() <= 300
+        && request.resource.data.currentStreak is int
+        && request.resource.data.currentStreak >= 0
+        && request.resource.data.currentStreak <= 100000
+        && request.resource.data.createdAt is timestamp
+        && request.resource.data.updatedAt is timestamp;
+      }
+    }
+
+    match /weeklyCorrectLeaderboard/{weekId}/entries/{entryId} {
+      allow read: if true;
+      allow create, update: if validWeeklyCorrectEntry();
+
+      function validWeeklyCorrectEntry() {
+        return request.resource.data.keys().hasOnly([
+          'username',
+          'usernameLower',
+          'correctCount',
+          'updatedAt'
+        ])
+        && request.resource.data.username is string
+        && request.resource.data.username.size() > 0
+        && request.resource.data.username.size() <= 24
+        && request.resource.data.usernameLower is string
+        && request.resource.data.correctCount is int
+        && request.resource.data.correctCount >= 0
+        && request.resource.data.correctCount <= 100000
+        && request.resource.data.updatedAt is timestamp;
+      }
+    }
   }
 }

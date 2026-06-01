@@ -33,11 +33,13 @@ let stats = JSON.parse(localStorage.getItem("emtStats")) || {
 let todayStats = getTodayStats();
 
 let missedQuestions = JSON.parse(localStorage.getItem("missedQuestions")) || [];
-let username = localStorage.getItem("emtUsername") || "";
+let username = localStorage.getItem("emtAuthUsername") || "";
 let currentStreak = username
   ? Number(localStorage.getItem(getStreakKey(username))) || Number(localStorage.getItem("emtStreak")) || 0
   : 0;
 let leaderboard = JSON.parse(localStorage.getItem("emtLeaderboard")) || [];
+let weeklyLeaderboard = JSON.parse(localStorage.getItem("emtWeeklyLeaderboard")) || [];
+let currentAuthAction = "login";
 
 const chapterList = document.getElementById("chapter-list");
 
@@ -45,41 +47,209 @@ function setupUsername() {
   const modal = document.getElementById("username-modal");
   const form = document.getElementById("username-form");
   const input = document.getElementById("username-input");
+  const passwordInput = document.getElementById("password-input");
 
-  input.value = username;
+  input.value = username || localStorage.getItem("emtUsername") || "";
   updateUsernameGreeting();
 
   if (!username) {
     showUsernameModal();
+  } else {
+    loadUserProgress();
   }
 
-  form.addEventListener("submit", (event) => {
+  form.querySelectorAll("[data-auth-action]").forEach((button) => {
+    button.addEventListener("click", () => {
+      currentAuthAction = button.dataset.authAction;
+    });
+  });
+
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    setLoginMessage("");
 
     const enteredUsername = input.value.trim();
-    if (!enteredUsername) return;
+    const enteredPassword = passwordInput.value;
+    if (!enteredUsername || !enteredPassword) return;
+
+    if (enteredPassword.length < 4) {
+      setLoginMessage("Password must be at least 4 characters.");
+      return;
+    }
+
+    const authSucceeded = currentAuthAction === "create"
+      ? await createAccount(enteredUsername, enteredPassword)
+      : await loginAccount(enteredUsername, enteredPassword);
+
+    if (!authSucceeded) return;
 
     username = enteredUsername;
+    localStorage.setItem("emtAuthUsername", username);
     localStorage.setItem("emtUsername", username);
-    currentStreak = Number(localStorage.getItem(getStreakKey(username))) || 0;
+    saveCurrentStreak();
+    passwordInput.value = "";
     updateUsernameGreeting();
     updateStreak();
     updateLeaderboard();
     modal.classList.add("hidden");
+  });
+
+  document.getElementById("profile-menu").addEventListener("click", (event) => {
+    if (event.target.id === "profile-menu") {
+      closeProfileMenu();
+    }
   });
 }
 
 function showUsernameModal() {
   const modal = document.getElementById("username-modal");
   const input = document.getElementById("username-input");
+  const passwordInput = document.getElementById("password-input");
 
-  input.value = username;
+  input.value = username || localStorage.getItem("emtUsername") || "";
+  passwordInput.value = "";
+  setLoginMessage("");
   modal.classList.remove("hidden");
   input.focus();
 }
 
+async function createAccount(enteredUsername, enteredPassword) {
+  try {
+    const userRef = doc(db, "users", getUserId(enteredUsername));
+    const snapshot = await getDoc(userRef);
+
+    if (snapshot.exists()) {
+      setLoginMessage("That username already exists. Try logging in.");
+      return false;
+    }
+
+    const passwordHash = await hashPassword(enteredPassword);
+    await setDoc(userRef, {
+      username: enteredUsername,
+      usernameLower: enteredUsername.toLowerCase(),
+      passwordHash,
+      stats,
+      todayStats,
+      missedQuestions,
+      currentStreak,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp()
+    });
+
+    return true;
+  } catch (error) {
+    console.warn("Could not create account.", error);
+    setLoginMessage(`Could not create account: ${getErrorMessage(error)}`);
+    return false;
+  }
+}
+
+async function loginAccount(enteredUsername, enteredPassword) {
+  try {
+    const userRef = doc(db, "users", getUserId(enteredUsername));
+    const snapshot = await getDoc(userRef);
+
+    if (!snapshot.exists()) {
+      setLoginMessage("No account found. Create an account first.");
+      return false;
+    }
+
+    const passwordHash = await hashPassword(enteredPassword);
+    const userData = snapshot.data();
+
+    if (userData.passwordHash !== passwordHash) {
+      setLoginMessage("Incorrect password.");
+      return false;
+    }
+
+    loadProgressFromUserData(userData);
+    return true;
+  } catch (error) {
+    console.warn("Could not log in.", error);
+    setLoginMessage(`Could not log in: ${getErrorMessage(error)}`);
+    return false;
+  }
+}
+
+async function loadUserProgress() {
+  if (!username) return;
+
+  try {
+    const snapshot = await getDoc(doc(db, "users", getUserId(username)));
+    if (!snapshot.exists()) return;
+
+    loadProgressFromUserData(snapshot.data());
+  } catch (error) {
+    console.warn("Could not load user progress.", error);
+  }
+}
+
+function loadProgressFromUserData(userData) {
+  stats = userData.stats || stats;
+  todayStats = userData.todayStats?.date === getTodayKey()
+    ? userData.todayStats
+    : getTodayStats();
+  missedQuestions = Array.isArray(userData.missedQuestions)
+    ? userData.missedQuestions
+    : [];
+  currentStreak = Number(userData.currentStreak) || 0;
+
+  localStorage.setItem("emtStats", JSON.stringify(stats));
+  localStorage.setItem("emtTodayStats", JSON.stringify(todayStats));
+  localStorage.setItem("missedQuestions", JSON.stringify(missedQuestions));
+  saveCurrentStreak();
+  updateStats();
+  updateStreak();
+}
+
+async function saveUserProgress() {
+  if (!username) return;
+
+  try {
+    await setDoc(doc(db, "users", getUserId(username)), {
+      username,
+      usernameLower: username.toLowerCase(),
+      stats,
+      todayStats,
+      missedQuestions,
+      currentStreak,
+      updatedAt: serverTimestamp()
+    }, { merge: true });
+  } catch (error) {
+    console.warn("Could not save user progress.", error);
+  }
+}
+
 function getStreakKey(name) {
   return `emtStreak:${name.trim().toLowerCase()}`;
+}
+
+function getUserId(name) {
+  return encodeURIComponent(name.trim().toLowerCase());
+}
+
+async function hashPassword(password) {
+  const encodedPassword = new TextEncoder().encode(password);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", encodedPassword);
+
+  return Array.from(new Uint8Array(hashBuffer))
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+function setLoginMessage(message) {
+  const loginMessage = document.getElementById("login-message");
+  if (!loginMessage) return;
+
+  loginMessage.textContent = message;
+}
+
+function getErrorMessage(error) {
+  if (error?.code === "permission-denied") {
+    return "Firestore rules need to be updated and published.";
+  }
+
+  return error?.message || "check your connection and try again.";
 }
 
 function getTodayKey() {
@@ -120,10 +290,80 @@ function saveCurrentStreak() {
 }
 
 function updateUsernameGreeting() {
+  const trigger = document.getElementById("profile-trigger");
   const greeting = document.getElementById("user-greeting");
-  if (!greeting) return;
+  const profileName = document.getElementById("profile-menu-name");
+  if (!trigger || !greeting) return;
 
+  trigger.classList.toggle("hidden", !username);
   greeting.textContent = username ? `Welcome back, ${username}` : "";
+
+  if (profileName) {
+    profileName.textContent = username;
+  }
+
+  updateProfileAvatar();
+}
+
+function toggleProfileMenu() {
+  const profileMenu = document.getElementById("profile-menu");
+  if (!profileMenu || !username) return;
+
+  profileMenu.classList.toggle("hidden");
+}
+
+function closeProfileMenu() {
+  const profileMenu = document.getElementById("profile-menu");
+  if (!profileMenu) return;
+
+  profileMenu.classList.add("hidden");
+}
+
+function getProfilePictureKey(name) {
+  return `emtProfilePicture:${name.trim().toLowerCase()}`;
+}
+
+function getStoredProfilePicture(name) {
+  return name ? localStorage.getItem(getProfilePictureKey(name)) : "";
+}
+
+function updateProfileAvatar() {
+  const avatars = [
+    document.getElementById("profile-avatar"),
+    document.getElementById("profile-menu-avatar")
+  ].filter(Boolean);
+
+  const initials = username ? username.slice(0, 2).toUpperCase() : "?";
+  const profilePicture = getStoredProfilePicture(username);
+
+  avatars.forEach((avatar) => {
+    avatar.textContent = initials;
+    avatar.classList.toggle("has-image", Boolean(profilePicture));
+    avatar.style.backgroundImage = profilePicture ? `url(${profilePicture})` : "";
+  });
+}
+
+function updateProfilePicture(event) {
+  const file = event.target.files?.[0];
+  if (!file || !username) return;
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    localStorage.setItem(getProfilePictureKey(username), reader.result);
+    updateProfileAvatar();
+  };
+  reader.readAsDataURL(file);
+}
+
+function logoutUser() {
+  username = "";
+  currentStreak = 0;
+  localStorage.removeItem("emtAuthUsername");
+  localStorage.removeItem("emtUsername");
+  closeProfileMenu();
+  updateUsernameGreeting();
+  updateStreak();
+  showUsernameModal();
 }
 
 function loadChapters() {
@@ -149,6 +389,11 @@ function loadChapters() {
 }
 
 function showScreen(screenId) {
+  if (screenId === "quiz-screen" && currentQuestions.length === 0) {
+    startQuickQuiz(10);
+    return;
+  }
+
   const screens = document.querySelectorAll(".screen");
 
   screens.forEach((screen) => {
@@ -172,6 +417,7 @@ function showScreen(screenId) {
 
   if (screenId === "ranking-screen") {
     loadRanking();
+    loadWeeklyCorrectRanking();
   }
 }
 
@@ -319,6 +565,7 @@ function gradeAnswer(selectedIndexes) {
     todayStats.correct++;
     currentStreak++;
     updateLeaderboard();
+    updateWeeklyCorrectLeaderboard();
 
     correctIndexes.forEach((index) => {
       buttons[index].classList.add("correct");
@@ -345,6 +592,7 @@ function gradeAnswer(selectedIndexes) {
   localStorage.setItem("emtStats", JSON.stringify(stats));
   saveTodayStats();
   saveCurrentStreak();
+  saveUserProgress();
 
   updateStats();
   updateStreak();
@@ -426,6 +674,7 @@ function clearMissedQuestions() {
   localStorage.removeItem("missedQuestions");
   loadMissedQuestions();
   updateStats();
+  saveUserProgress();
 }
 
 function nextQuestion() {
@@ -706,6 +955,20 @@ function updateStreak() {
   streakBadge.textContent = `🔥 ${currentStreak}`;
 }
 
+function getWeekKey(date = new Date()) {
+  const weekStart = new Date(date);
+  const day = weekStart.getDay();
+  const daysSinceMonday = (day + 6) % 7;
+  weekStart.setDate(weekStart.getDate() - daysSinceMonday);
+  weekStart.setHours(0, 0, 0, 0);
+
+  const year = weekStart.getFullYear();
+  const month = String(weekStart.getMonth() + 1).padStart(2, "0");
+  const monthDay = String(weekStart.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${monthDay}`;
+}
+
 async function updateLeaderboard() {
   if (!username) return;
 
@@ -750,6 +1013,56 @@ async function updateLeaderboard() {
   }
 }
 
+async function updateWeeklyCorrectLeaderboard() {
+  if (!username) return;
+
+  const weekKey = getWeekKey();
+  const existingEntry = weeklyLeaderboard.find((entry) => {
+    return entry.username.toLowerCase() === username.toLowerCase();
+  });
+
+  if (existingEntry) {
+    existingEntry.correctCount++;
+    existingEntry.weekKey = weekKey;
+  } else {
+    weeklyLeaderboard.push({
+      username,
+      weekKey,
+      correctCount: 1
+    });
+  }
+
+  weeklyLeaderboard = weeklyLeaderboard
+    .filter((entry) => entry.weekKey === weekKey)
+    .sort((first, second) => second.correctCount - first.correctCount)
+    .slice(0, 5);
+  localStorage.setItem("emtWeeklyLeaderboard", JSON.stringify(weeklyLeaderboard));
+  loadWeeklyCorrectRanking();
+
+  try {
+    const weeklyRef = doc(
+      db,
+      "weeklyCorrectLeaderboard",
+      weekKey,
+      "entries",
+      getLeaderboardId(username)
+    );
+    const snapshot = await getDoc(weeklyRef);
+    const savedCorrectCount = snapshot.exists() ? Number(snapshot.data().correctCount) || 0 : 0;
+
+    await setDoc(weeklyRef, {
+      username,
+      usernameLower: username.toLowerCase(),
+      correctCount: savedCorrectCount + 1,
+      updatedAt: serverTimestamp()
+    }, { merge: true });
+
+    await loadWeeklyCorrectRanking();
+  } catch (error) {
+    console.warn("Could not sync weekly correct leaderboard with Firestore.", error);
+  }
+}
+
 async function loadRanking() {
   const rankingList = document.getElementById("ranking-list");
   if (!rankingList) return;
@@ -776,28 +1089,99 @@ async function loadRanking() {
     console.warn("Could not load Firestore leaderboard. Showing local scores.", error);
   }
 
-  if (leaderboard.length === 0) {
-    rankingList.innerHTML = `
+  renderRankingList(
+    rankingList,
+    leaderboard,
+    "bestStreak",
+    "Best correct streak",
+    "Answer questions correctly to start a streak."
+  );
+}
+
+async function loadWeeklyCorrectRanking() {
+  const weeklyRankingList = document.getElementById("weekly-ranking-list");
+  if (!weeklyRankingList) return;
+
+  const weekKey = getWeekKey();
+  weeklyLeaderboard = weeklyLeaderboard.filter((entry) => entry.weekKey === weekKey);
+
+  try {
+    const weeklyQuery = query(
+      collection(db, "weeklyCorrectLeaderboard", weekKey, "entries"),
+      orderBy("correctCount", "desc"),
+      limit(5)
+    );
+    const snapshot = await getDocs(weeklyQuery);
+
+    weeklyLeaderboard = snapshot.docs
+      .map((snapshotDoc) => {
+        const data = snapshotDoc.data();
+
+        return {
+          username: data.username,
+          correctCount: Number(data.correctCount) || 0
+        };
+      })
+      .slice(0, 5);
+
+    localStorage.setItem("emtWeeklyLeaderboard", JSON.stringify(weeklyLeaderboard));
+  } catch (error) {
+    console.warn("Could not load weekly correct leaderboard. Showing local scores.", error);
+  }
+
+  renderRankingList(
+    weeklyRankingList,
+    weeklyLeaderboard,
+    "correctCount",
+    "Correct this week",
+    "Answer questions correctly this week to appear here."
+  );
+}
+
+function renderRankingList(container, entries, scoreKey, label, emptyMessage) {
+  if (entries.length === 0) {
+    container.innerHTML = `
       <div class="empty-card">
         <h2>No rankings yet</h2>
-        <p>Answer questions correctly to start a streak.</p>
+        <p>${emptyMessage}</p>
       </div>
     `;
     return;
   }
 
-  rankingList.innerHTML = leaderboard.map((entry, index) => {
+  container.innerHTML = entries.map((entry, index) => {
+    const profilePicture = getStoredProfilePicture(entry.username);
+    const initials = entry.username ? entry.username.slice(0, 2).toUpperCase() : "?";
+    const medal = getRankingMedal(index);
+    const avatarStyle = profilePicture
+      ? ` style="background-image: url('${profilePicture}')"`
+      : "";
+
     return `
       <div class="ranking-card">
-        <div class="ranking-place">#${index + 1}</div>
+        <div class="ranking-place ${medal.className}">${medal.label}</div>
+        <div class="ranking-avatar ${profilePicture ? "has-image" : ""}"${avatarStyle}>${escapeHtml(initials)}</div>
         <div>
           <p class="ranking-name">${escapeHtml(entry.username)}</p>
-          <p class="ranking-label">Best correct streak</p>
+          <p class="ranking-label">${label}</p>
         </div>
-        <div class="ranking-streak">${entry.bestStreak}</div>
+        <div class="ranking-streak">${entry[scoreKey]}</div>
       </div>
     `;
   }).join("");
+}
+
+function getRankingMedal(index) {
+  const medals = [
+    { label: "🥇", className: "ranking-gold" },
+    { label: "🥈", className: "ranking-silver" },
+    { label: "🥉", className: "ranking-bronze" }
+  ];
+
+  return medals[index] || {
+    label: `#${index + 1}`,
+    className: ""
+  };
 }
 
 function getLeaderboardId(name) {
@@ -809,13 +1193,16 @@ Object.assign(window, {
   flipFlashcard,
   goHome,
   loadFlashcards,
+  logoutUser,
   nextFlashcard,
   nextQuestion,
   previousFlashcard,
   restartQuiz,
   showReview,
   showScreen,
-  startQuickQuiz
+  startQuickQuiz,
+  toggleProfileMenu,
+  updateProfilePicture
 });
 
 setupUsername();
@@ -823,3 +1210,4 @@ loadChapters();
 updateStats();
 updateStreak();
 loadRanking();
+loadWeeklyCorrectRanking();

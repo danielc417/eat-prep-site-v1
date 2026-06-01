@@ -16,8 +16,13 @@ const chapters = [
   },
   {
     id: 10,
-    title: "Airway Management",
-    description: "Airway opening, suctioning, oxygen, ventilation, and airway adjuncts."
+    title: "Anatomy of the Respiratory System",
+    description: "Upper airway, lower airway, lungs, thoracic structures, and pediatric airway anatomy."
+  },
+  {
+    id: 15,
+    title: "Respiratory Emergencies",
+    description: "Dyspnea, breath sounds, respiratory diseases, oxygen, BVM, CPAP, inhalers, and special airway problems."
   }
 ];
 
@@ -1144,134 +1149,1304 @@ const questionBank = [
 },
   {
   chapter: 10,
-  topic: "Airway Management",
-  question: "What is the purpose of suctioning?",
+  topic: "Anatomy of the Respiratory System",
+  question: "What is the primary purpose of the respiratory system?",
   answers: [
-    "To remove fluids or secretions from the airway",
-    "To give oxygen",
-    "To check blood pressure",
-    "To stop bleeding"
+    "To circulate blood through the body",
+    "To allow air movement and gas exchange",
+    "To digest nutrients",
+    "To control blood sugar"
+  ],
+  correct: 1,
+  explanation: "The respiratory system moves air into and out of the body and allows oxygen and carbon dioxide exchange."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "What is ventilation?",
+  answers: [
+    "The movement of blood through capillaries",
+    "The movement of air between the lungs and the environment",
+    "The movement of oxygen from cells to blood",
+    "The production of speech sounds"
+  ],
+  correct: 1,
+  explanation: "Ventilation is the physical movement of air into and out of the lungs."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "The upper airway consists of structures located primarily:",
+  answers: [
+    "Below the diaphragm",
+    "Above the vocal cords",
+    "Inside the alveoli",
+    "Within the heart"
+  ],
+  correct: 1,
+  explanation: "The upper airway includes the structures above the level of the vocal cords."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "Which of the following is part of the upper airway?",
+  answers: [
+    "Alveoli",
+    "Bronchioles",
+    "Pharynx",
+    "Pulmonary capillaries"
+  ],
+  correct: 2,
+  explanation: "The pharynx is part of the upper airway."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "What are the major functions of the upper airway?",
+  answers: [
+    "Pumping blood and removing wastes",
+    "Warming, filtering, and humidifying air",
+    "Producing red blood cells",
+    "Moving oxygen directly into body cells"
+  ],
+  correct: 1,
+  explanation: "The upper airway prepares air before it reaches lower respiratory structures."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "The pharynx is best described as the:",
+  answers: [
+    "Tiny air sac where gas exchange occurs",
+    "Muscular tube extending from the nose and mouth toward the trachea and esophagus",
+    "Nerve controlling the diaphragm",
+    "Membrane covering the lungs"
+  ],
+  correct: 1,
+  explanation: "The pharynx is the throat passage shared by respiratory and digestive pathways."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "Which three structures make up the pharynx?",
+  answers: [
+    "Nasopharynx, oropharynx, and laryngopharynx",
+    "Trachea, bronchi, and bronchioles",
+    "Thyroid cartilage, cricoid cartilage, and diaphragm",
+    "Pleura, lungs, and mediastinum"
   ],
   correct: 0,
-  explanation: "Suctioning helps remove vomit, blood, mucus, or other fluids from the airway."
+  explanation: "Those are the three divisions of the pharynx."
 },
 {
   chapter: 10,
-  topic: "Airway Management",
-  question: "Which airway maneuver is commonly used when there is no suspected spinal injury?",
+  topic: "Anatomy of the Respiratory System",
+  question: "The nasopharynx is located:",
   answers: [
-    "Jaw-thrust maneuver",
-    "Head tilt-chin lift",
-    "Chest compression",
-    "Recovery drag"
-  ],
-  correct: 1,
-  explanation: "The head tilt-chin lift is used to open the airway when spinal injury is not suspected."
-},
-{
-  chapter: 10,
-  topic: "Airway Management",
-  question: "Which airway maneuver is preferred when spinal injury is suspected?",
-  answers: [
-    "Head tilt-chin lift",
-    "Jaw-thrust maneuver",
-    "Log roll only",
-    "Finger sweep on every patient"
-  ],
-  correct: 1,
-  explanation: "The jaw-thrust maneuver helps open the airway while limiting movement of the neck."
-},
-{
-  chapter: 10,
-  topic: "Airway Adjuncts",
-  question: "What is an oropharyngeal airway also called?",
-  answers: [
-    "NPA",
-    "OPA",
-    "BVM",
-    "AED"
-  ],
-  correct: 1,
-  explanation: "An oropharyngeal airway is commonly called an OPA."
-},
-{
-  chapter: 10,
-  topic: "Airway Adjuncts",
-  question: "When is an OPA usually used?",
-  answers: [
-    "In a conscious patient with a gag reflex",
-    "In an unresponsive patient without a gag reflex",
-    "In every patient with chest pain",
-    "Only for walking patients"
-  ],
-  correct: 1,
-  explanation: "An OPA is generally used for an unresponsive patient who does not have a gag reflex."
-},
-{
-  chapter: 10,
-  topic: "Airway Adjuncts",
-  question: "What is a nasopharyngeal airway also called?",
-  answers: [
-    "NPA",
-    "OPA",
-    "BVM",
-    "CPR"
+    "Behind the nose",
+    "Inside the lungs",
+    "Below the diaphragm",
+    "Between the alveoli"
   ],
   correct: 0,
-  explanation: "A nasopharyngeal airway is commonly called an NPA."
+  explanation: "The nasopharynx is the portion of the pharynx behind the nasal cavity."
 },
 {
   chapter: 10,
-  topic: "Ventilation",
-  question: "What device is commonly used to ventilate a patient who is not breathing adequately?",
+  topic: "Anatomy of the Respiratory System",
+  question: "What does the ciliated mucous membrane of the nasopharynx help do?",
   answers: [
-    "Bag-valve mask",
+    "Pump oxygenated blood",
+    "Filter contaminants and warm and humidify air",
+    "Open the vocal cords during speech only",
+    "Force carbon dioxide into cells"
+  ],
+  correct: 1,
+  explanation: "The nasal pathway helps prepare and clean incoming air."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "The oropharynx is located:",
+  answers: [
+    "Posterior to the oral cavity",
+    "Around the heart",
+    "Inside the bronchioles",
+    "Below the lungs"
+  ],
+  correct: 0,
+  explanation: "The oropharynx is the portion of the throat behind the mouth."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "The lowest portion of the pharynx is called the:",
+  answers: [
+    "Nasopharynx",
+    "Laryngopharynx",
+    "Carina",
+    "Alveolus"
+  ],
+  correct: 1,
+  explanation: "The laryngopharynx, also called the hypopharynx, is the lowest part of the pharynx."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "At the lower end of the laryngopharynx, air normally travels into the:",
+  answers: [
+    "Esophagus",
+    "Stomach",
+    "Larynx",
+    "Pulmonary artery"
+  ],
+  correct: 2,
+  explanation: "The larynx is anterior and leads air toward the trachea."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "What is the main function of the epiglottis?",
+  answers: [
+    "To stimulate the heart",
+    "To prevent food and liquid from entering the airway during swallowing",
+    "To exchange oxygen and carbon dioxide",
+    "To attach the lungs to the chest wall"
+  ],
+  correct: 1,
+  explanation: "The epiglottis folds over the glottis when swallowing."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "Aspiration occurs when:",
+  answers: [
+    "Air enters through the nose",
+    "The diaphragm contracts downward",
+    "Foreign material enters the airway or lungs",
+    "Oxygen enters the blood normally"
+  ],
+  correct: 2,
+  explanation: "Food, liquid, blood, or vomit in the airway may be aspirated."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "Which structure marks the transition between the upper and lower airway?",
+  answers: [
+    "Alveoli",
+    "Larynx",
+    "Diaphragm",
+    "Pulmonary capillaries"
+  ],
+  correct: 1,
+  explanation: "The larynx marks where the upper airway ends and the lower airway begins."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "The Adam's apple is formed by the:",
+  answers: [
+    "Cricoid cartilage",
+    "Thyroid cartilage",
+    "Epiglottis",
+    "Carina"
+  ],
+  correct: 1,
+  explanation: "The thyroid cartilage forms the laryngeal prominence called the Adam's apple."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "The cricoid cartilage is important because it:",
+  answers: [
+    "Is the main muscle of breathing",
+    "Forms a complete ring at the lowest portion of the larynx",
+    "Contains the alveoli",
+    "Carries oxygenated blood to the heart"
+  ],
+  correct: 1,
+  explanation: "The cricoid ring is a complete cartilage ring immediately above the trachea."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "The cricothyroid membrane is located between the:",
+  answers: [
+    "Nose and mouth",
+    "Thyroid and cricoid cartilages",
+    "Lungs and diaphragm",
+    "Bronchioles and alveoli"
+  ],
+  correct: 1,
+  explanation: "It connects the thyroid cartilage to the cricoid ring."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "The opening between the vocal cords is called the:",
+  answers: [
+    "Glottis",
+    "Carina",
+    "Pleura",
+    "Mediastinum"
+  ],
+  correct: 0,
+  explanation: "The glottis, or glottic opening, is the space between the vocal cords."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "What is the narrowest portion of the adult airway?",
+  answers: [
+    "Mainstem bronchus",
+    "Glottis",
+    "Alveolar duct",
+    "Nasopharynx"
+  ],
+  correct: 1,
+  explanation: "In adults, the glottis is the narrowest portion of the airway."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "What is the primary function of the lower airway?",
+  answers: [
+    "To digest swallowed food",
+    "To deliver oxygen-containing air to the alveoli",
+    "To regulate blood pressure",
+    "To form speech sounds only"
+  ],
+  correct: 1,
+  explanation: "The lower airway moves air toward the gas-exchange areas of the lungs."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "The trachea is also known as the:",
+  answers: [
+    "Voice box",
+    "Windpipe",
+    "Air sac",
+    "Chest wall"
+  ],
+  correct: 1,
+  explanation: "The trachea is the windpipe leading toward the lungs."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "What structural feature helps keep the trachea open?",
+  answers: [
+    "C-shaped cartilaginous rings",
+    "Pulmonary capillaries",
+    "Vocal cords",
+    "The esophagus"
+  ],
+  correct: 0,
+  explanation: "Cartilage rings support the trachea and help prevent collapse."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "The trachea splits into the right and left mainstem bronchi at the:",
+  answers: [
+    "Glottis",
+    "Carina",
+    "Epiglottis",
+    "Diaphragm"
+  ],
+  correct: 1,
+  explanation: "The carina is the division point of the trachea."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "Which airway structures can dilate or constrict because of smooth muscle tone?",
+  answers: [
+    "Vocal cords",
+    "Bronchioles",
+    "Pleura",
+    "Pulmonary capillaries"
+  ],
+  correct: 1,
+  explanation: "Bronchioles are small smooth-muscle airways that respond to different stimuli."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "Where does oxygen and carbon dioxide exchange occur?",
+  answers: [
+    "Esophagus",
+    "Alveoli",
+    "Thyroid cartilage",
+    "Pharynx"
+  ],
+  correct: 1,
+  explanation: "The alveoli are the gas-exchange structures of the respiratory system."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "Which blood vessels surround the alveoli and participate in gas exchange?",
+  answers: [
+    "Coronary arteries",
+    "Pulmonary capillaries",
+    "Jugular veins",
+    "Carotid arteries"
+  ],
+  correct: 1,
+  explanation: "Pulmonary capillaries surround the alveoli and exchange gases with them."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "Which statement correctly describes gas exchange at the alveoli?",
+  answers: [
+    "Oxygen moves into the alveoli from the blood, and carbon dioxide enters the blood.",
+    "Oxygen moves into pulmonary capillaries, and carbon dioxide moves into the alveoli.",
+    "Both gases move only into the lungs.",
+    "Both gases move only into the blood."
+  ],
+  correct: 1,
+  explanation: "Oxygen enters the blood, while carbon dioxide leaves the blood to be exhaled."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "The membrane directly covering the lung tissue is the:",
+  answers: [
+    "Parietal pleura",
+    "Visceral pleura",
+    "Cricothyroid membrane",
+    "Glottic membrane"
+  ],
+  correct: 1,
+  explanation: "Visceral pleura covers the lung surface."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "The membrane lining the inside of the thoracic cavity is the:",
+  answers: [
+    "Parietal pleura",
+    "Visceral pleura",
+    "Epiglottis",
+    "Carina"
+  ],
+  correct: 0,
+  explanation: "Parietal pleura lines the inner chest cavity."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "The space between the lungs that contains the heart and major blood vessels is called the:",
+  answers: [
+    "Nasopharynx",
+    "Mediastinum",
+    "Glottis",
+    "Oropharynx"
+  ],
+  correct: 1,
+  explanation: "The mediastinum separates the right and left lung spaces."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "Which muscle is primarily responsible for normal breathing?",
+  answers: [
+    "Diaphragm",
+    "Biceps",
+    "Tongue",
+    "Thyroid cartilage"
+  ],
+  correct: 0,
+  explanation: "The diaphragm contracts downward and is the main muscle used during breathing."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "Which nerve stimulates the diaphragm to contract?",
+  answers: [
+    "Optic nerve",
+    "Phrenic nerve",
+    "Facial nerve",
+    "Radial nerve"
+  ],
+  correct: 1,
+  explanation: "The phrenic nerve innervates the diaphragm."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "Intercostal muscles are located:",
+  answers: [
+    "Between the ribs",
+    "Inside the alveoli",
+    "Behind the tongue",
+    "Inside the trachea"
+  ],
+  correct: 0,
+  explanation: "Intercostal muscles assist breathing and may become especially noticeable during respiratory distress."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "Why may an infant's airway become obstructed while lying flat?",
+  answers: [
+    "Infants have a smaller chest cavity only.",
+    "Their proportionately larger occiput can flex the head forward.",
+    "Their lungs have too many lobes.",
+    "Their diaphragm cannot contract."
+  ],
+  correct: 1,
+  explanation: "The larger occiput can place the infant's airway in a flexed, obstructed position."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "Which pediatric anatomy combination increases the risk of airway obstruction?",
+  answers: [
+    "Larger jaw and smaller tongue",
+    "Smaller jaw and larger tongue",
+    "Wider trachea and smaller epiglottis",
+    "Larger bronchioles and stronger chest muscles"
+  ],
+  correct: 1,
+  explanation: "Children have a proportionately smaller mandible and larger tongue."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "Compared with an adult, a child's epiglottis is generally:",
+  answers: [
+    "Smaller and rigid",
+    "Larger, more floppy, and omega-shaped",
+    "Completely absent",
+    "Below the diaphragm"
+  ],
+  correct: 1,
+  explanation: "The pediatric epiglottis has a more floppy, omega-shaped appearance."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "In children younger than 8 years, the narrowest portion of the airway is at the:",
+  answers: [
+    "Alveoli",
+    "Cricoid ring",
+    "Carina",
+    "Nasopharynx"
+  ],
+  correct: 1,
+  explanation: "The pediatric airway is narrowest at the cricoid ring."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "Why are infants and young children commonly called belly breathers?",
+  answers: [
+    "They breathe mostly through the stomach.",
+    "They rely heavily on diaphragm movement, making abdominal movement noticeable.",
+    "Their lungs are located in the abdomen.",
+    "Their ribs do not move at all."
+  ],
+  correct: 1,
+  explanation: "Pediatric patients depend heavily on diaphragm-driven breathing."
+},
+{
+  chapter: 10,
+  topic: "Anatomy of the Respiratory System",
+  question: "A child has airway swelling after an allergic reaction. Why is this especially dangerous?",
+  answers: [
+    "Children have stronger chest muscles than adults.",
+    "Their naturally smaller airway can become severely narrowed with even minor swelling.",
+    "Their alveoli automatically close during stress.",
+    "Their trachea directs air into the stomach."
+  ],
+  correct: 1,
+  explanation: "Small pediatric airways can become critically obstructed from swelling or a foreign body."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "What does dyspnea mean?",
+  answers: [
+    "Chest pain caused by injury",
+    "Difficulty breathing or shortness of breath",
+    "Coughing blood",
+    "Lack of a pulse"
+  ],
+  correct: 1,
+  explanation: "Dyspnea is the sensation or complaint of difficulty breathing."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Which finding most strongly suggests respiratory distress?",
+  answers: [
+    "Speaking normally in complete sentences",
+    "Respiratory rate of 16 breaths/min with clear lungs",
+    "Accessory muscle use and difficulty speaking",
+    "Warm, dry skin with normal breathing"
+  ],
+  correct: 2,
+  explanation: "Accessory muscle use and inability to speak normally indicate increased work of breathing."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Which finding may indicate respiratory failure rather than simple respiratory distress?",
+  answers: [
+    "Mild anxiety with normal oxygenation",
+    "Altered mental status and weakening respiratory effort",
+    "Coughing with a normal respiratory rate",
+    "Clear, equal lung sounds"
+  ],
+  correct: 1,
+  explanation: "Altered mental status and decreasing effort can indicate exhaustion and inadequate ventilation."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "A conscious patient with significant dyspnea usually breathes most comfortably in what position?",
+  answers: [
+    "Supine",
+    "Trendelenburg",
+    "Sitting upright",
+    "Prone"
+  ],
+  correct: 2,
+  explanation: "Sitting upright often improves lung expansion and reduces discomfort."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "When assessing breath sounds, the EMT should:",
+  answers: [
+    "Listen over clothing to save time",
+    "Compare corresponding areas on both sides of the bare chest",
+    "Listen only on the front of the chest",
+    "Listen only during inhalation"
+  ],
+  correct: 1,
+  explanation: "Breath sounds should be compared bilaterally directly over the skin."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Which tool helps estimate the patient\u2019s oxygen saturation?",
+  answers: [
     "Blood pressure cuff",
-    "Stethoscope only",
-    "Traction splint"
-  ],
-  correct: 0,
-  explanation: "A bag-valve mask, or BVM, is used to provide positive-pressure ventilation."
-},
-{
-  chapter: 10,
-  topic: "Oxygen",
-  question: "Which device can deliver high-concentration oxygen to a breathing patient?",
-  answers: [
-    "Nasal cannula",
-    "Nonrebreather mask",
-    "Bandage",
-    "Backboard"
+    "Pulse oximeter",
+    "Glucometer",
+    "Thermometer"
   ],
   correct: 1,
-  explanation: "A nonrebreather mask can deliver a high concentration of oxygen to a patient who is breathing adequately."
+  explanation: "Pulse oximetry estimates blood oxygen saturation."
 },
 {
-  chapter: 10,
-  topic: "Airway Management",
-  question: "What sound may suggest fluid in the airway?",
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "An unstable respiratory patient should generally be reassessed at least every:",
   answers: [
-    "Gurgling",
-    "Clear speech",
+    "30 minutes",
+    "20 minutes",
+    "15 minutes",
+    "5 minutes"
+  ],
+  correct: 3,
+  explanation: "Unstable respiratory patients require frequent reassessment, generally every 5 minutes."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "A patient with declining mental status and inadequate breathing may require:",
+  answers: [
+    "Oral fluids",
+    "Assisted ventilation with a BVM",
+    "Walking to the ambulance",
+    "No treatment until a diagnosis is confirmed"
+  ],
+  correct: 1,
+  explanation: "Inadequate breathing requires ventilatory support."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Wheezing is best described as:",
+  answers: [
+    "A bubbling sound caused by fluid in the alveoli",
+    "A high-pitched whistling sound caused by narrowed lower airways",
+    "A harsh inspiratory sound caused by upper-airway swelling",
+    "A normal breath sound"
+  ],
+  correct: 1,
+  explanation: "Wheezing commonly occurs with asthma and COPD."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Crackles are commonly associated with:",
+  answers: [
+    "Pulmonary edema",
+    "Simple anxiety only",
+    "Upper-airway foreign body obstruction only",
+    "Normal breathing"
+  ],
+  correct: 0,
+  explanation: "Crackles occur when air moves through fluid in alveoli, such as in pulmonary edema."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Rhonchi usually indicate:",
+  answers: [
+    "Mucus or secretions in larger airways",
+    "A perfectly clear airway",
+    "A blood clot in the leg",
+    "Absence of lung tissue"
+  ],
+  correct: 0,
+  explanation: "Rhonchi are rattling sounds produced by secretions or mucus."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Stridor is most concerning for:",
+  answers: [
+    "Upper-airway obstruction",
+    "Normal lung ventilation",
+    "A broken leg",
+    "Low blood sugar only"
+  ],
+  correct: 0,
+  explanation: "Stridor is a high-pitched inspiratory sound caused by narrowing of the upper airway."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Absent breath sounds on one side with sudden dyspnea and chest pain should make you suspect:",
+  answers: [
+    "Pneumothorax",
+    "Mild hay fever",
+    "Simple hyperventilation only",
+    "Normal breathing"
+  ],
+  correct: 0,
+  explanation: "A pneumothorax may reduce or eliminate airflow on the affected side."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "The term adventitious breath sounds refers to:",
+  answers: [
+    "Normal breath sounds",
+    "Abnormal breath sounds such as wheezing, crackles, and rhonchi",
+    "Heart sounds only",
+    "Blood pressure findings"
+  ],
+  correct: 1,
+  explanation: "Adventitious breath sounds are abnormal sounds detected during lung auscultation."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Which condition can cause severe upper-airway swelling and rapidly progress to total obstruction?",
+  answers: [
+    "Epiglottitis",
+    "Simple ankle sprain",
+    "Hypertension",
+    "Mild dehydration"
+  ],
+  correct: 0,
+  explanation: "Epiglottitis can create sudden life-threatening airway compromise."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "A patient suspected of having epiglottitis should generally be allowed to:",
+  answers: [
+    "Lie supine regardless of discomfort",
+    "Sit upright in a position of comfort",
+    "Drink water immediately",
+    "Walk around to improve airflow"
+  ],
+  correct: 1,
+  explanation: "Forcing the patient flat may worsen upper-airway obstruction."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Why should an EMT avoid unnecessary airway stimulation in a patient with suspected epiglottitis?",
+  answers: [
+    "It may cause complete airway obstruction",
+    "It lowers blood pressure immediately",
+    "It causes a leg fracture",
+    "It permanently damages the lungs in every case"
+  ],
+  correct: 0,
+  explanation: "Airway manipulation can worsen swelling or trigger obstruction."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Which respiratory infection commonly causes lung inflammation and may produce crackles or rhonchi?",
+  answers: [
+    "Pneumonia",
+    "Wrist sprain",
+    "Migraine",
+    "Appendicitis"
+  ],
+  correct: 0,
+  explanation: "Pneumonia involves infected lung tissue and may produce abnormal breath sounds."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "RSV is especially important because it:",
+  answers: [
+    "Commonly affects the lungs and airways and can be serious in children",
+    "Always causes broken ribs",
+    "Causes only skin irritation",
+    "Never spreads between people"
+  ],
+  correct: 0,
+  explanation: "RSV is a contagious respiratory illness and may lead to severe breathing problems."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Pertussis is also called:",
+  answers: [
+    "Whooping cough",
+    "Pulmonary embolism",
+    "Pneumothorax",
+    "Pleural effusion"
+  ],
+  correct: 0,
+  explanation: "Pertussis is a contagious respiratory infection commonly known as whooping cough."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Acute pulmonary edema involves:",
+  answers: [
+    "Fluid collecting in the alveoli and lung tissue",
+    "Air trapping only in the stomach",
+    "Bone fragments blocking a vein",
+    "Loss of blood sugar"
+  ],
+  correct: 0,
+  explanation: "Pulmonary edema interferes with gas exchange by placing fluid between alveoli and blood vessels."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "A common cause of pulmonary edema is:",
+  answers: [
+    "Congestive heart failure",
+    "Mild seasonal allergies only",
+    "A finger laceration",
+    "Ear infection only"
+  ],
+  correct: 0,
+  explanation: "Heart failure can cause fluid to back up into the lungs."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Which finding is strongly associated with severe pulmonary edema?",
+  answers: [
+    "Frothy pink sputum",
+    "Pain isolated to one ankle",
+    "Clear breath sounds and no dyspnea",
+    "Slow pulse with normal breathing"
+  ],
+  correct: 0,
+  explanation: "Frothy pink sputum can occur in severe pulmonary edema."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Which breath sound is commonly heard in pulmonary edema?",
+  answers: [
+    "Crackles",
+    "Normal vesicular sounds only",
+    "No breath sounds from the throat only",
+    "Snoring caused by tongue obstruction only"
+  ],
+  correct: 0,
+  explanation: "Crackles reflect air passing through fluid in the alveoli."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Orthopnea means:",
+  answers: [
+    "Difficulty breathing when lying flat",
+    "Pain when swallowing",
+    "Coughing from an upper-airway foreign body only",
+    "An inability to walk"
+  ],
+  correct: 0,
+  explanation: "Patients with CHF or pulmonary edema often breathe worse while lying flat."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "CPAP may benefit an alert patient with pulmonary edema because it can:",
+  answers: [
+    "Help open alveoli and improve oxygen exchange",
+    "Remove blood clots from the lungs",
+    "Replace all need for patient monitoring",
+    "Permanently cure heart failure"
+  ],
+  correct: 0,
+  explanation: "CPAP maintains positive pressure and can improve oxygenation in appropriate patients."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Which patient would be a poor candidate for CPAP?",
+  answers: [
+    "Alert patient with moderate respiratory distress from pulmonary edema",
+    "Patient unable to follow commands with declining consciousness",
+    "Alert patient with tachypnea and low oxygen saturation",
+    "Cooperative patient able to tolerate the mask"
+  ],
+  correct: 1,
+  explanation: "CPAP requires a patient who can follow commands and protect the airway."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "COPD is best described as:",
+  answers: [
+    "Chronic obstruction and damage involving the airways and alveoli",
+    "Sudden fracture of the sternum",
+    "Infection of the skin only",
+    "A temporary headache disorder"
+  ],
+  correct: 0,
+  explanation: "COPD progressively interferes with airflow and gas exchange."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Which two conditions are commonly included under COPD?",
+  answers: [
+    "Chronic bronchitis and emphysema",
+    "Appendicitis and gastritis",
+    "Stroke and seizure",
+    "Fracture and dislocation"
+  ],
+  correct: 0,
+  explanation: "Chronic bronchitis and emphysema are major COPD conditions."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Chronic bronchitis primarily involves:",
+  answers: [
+    "Chronic inflammation and excessive mucus production in the bronchi",
+    "Collapse of one lung from air in the pleural space",
+    "A clot in the pulmonary vessels",
+    "Fluid only around the brain"
+  ],
+  correct: 0,
+  explanation: "Chronic bronchitis causes airway inflammation and mucus buildup."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Emphysema primarily involves:",
+  answers: [
+    "Destruction of alveolar walls and air trapping",
+    "Sudden swelling of the epiglottis",
+    "Blood clot formation in the leg only",
+    "Fluid accumulating around the heart only"
+  ],
+  correct: 0,
+  explanation: "Emphysema damages alveoli and reduces effective gas exchange."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Which finding is commonly seen in patients with COPD?",
+  answers: [
+    "Pursed-lip breathing",
+    "Completely normal breathing during severe distress",
+    "No history of breathing problems ever",
+    "Improved breathing when lying flat in every case"
+  ],
+  correct: 0,
+  explanation: "Pursed-lip breathing can help patients with COPD maintain airway pressure during exhalation."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "A COPD patient with altered mental status may be experiencing:",
+  answers: [
+    "Hypoxia or carbon dioxide retention",
+    "Improved ventilation only",
+    "Normal breathing with no emergency",
+    "A simple hearing problem only"
+  ],
+  correct: 0,
+  explanation: "Poor oxygenation or retained carbon dioxide can alter consciousness."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Which statement about oxygen for a critically ill COPD patient is correct?",
+  answers: [
+    "Never give oxygen to a COPD patient",
+    "Do not withhold needed oxygen; monitor closely and support ventilation if needed",
+    "Oxygen is never useful in COPD",
+    "The EMT should ignore pulse oximetry"
+  ],
+  correct: 1,
+  explanation: "A hypoxic COPD patient still needs oxygen and frequent reassessment."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Asthma involves:",
+  answers: [
+    "Narrowing of lower airways from bronchospasm, inflammation, and mucus",
+    "Fluid collecting only around the brain",
+    "Fracture of the ribs",
+    "Obstruction of the coronary arteries only"
+  ],
+  correct: 0,
+  explanation: "Asthma limits airflow through narrowed bronchioles."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Which is a common trigger for asthma?",
+  answers: [
+    "Cold air",
+    "A healed ankle sprain",
+    "Normal hydration",
+    "Wearing glasses"
+  ],
+  correct: 0,
+  explanation: "Cold air, exercise, allergens, smoke, and infection may trigger asthma symptoms."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "The most common abnormal breath sound with asthma is:",
+  answers: [
+    "Wheezing",
+    "Bone crepitus",
+    "Absent heart sounds",
+    "Bowel sounds in the chest"
+  ],
+  correct: 0,
+  explanation: "Wheezing is caused by narrowed lower airways."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "A severely ill asthma patient with very little air movement and decreasing wheezing should be considered:",
+  answers: [
+    "Automatically improved",
+    "At risk for respiratory failure",
+    "Fully recovered",
+    "Ready to refuse all evaluation"
+  ],
+  correct: 1,
+  explanation: "Minimal wheezing may mean the patient is moving too little air to create sound."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Albuterol is primarily used to:",
+  answers: [
+    "Open narrowed lower airways",
+    "Stop all infections immediately",
+    "Remove fluid from the pleural space",
+    "Dissolve pulmonary blood clots"
+  ],
+  correct: 0,
+  explanation: "Albuterol is a rapid-acting bronchodilator."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Anaphylaxis can cause respiratory failure because it may produce:",
+  answers: [
+    "Airway swelling and bronchospasm",
+    "Only toe pain",
+    "Only mild thirst",
+    "Improved airway size"
+  ],
+  correct: 0,
+  explanation: "Anaphylaxis can rapidly obstruct breathing through swelling and airway narrowing."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "A spontaneous pneumothorax occurs when:",
+  answers: [
+    "A weak area of lung ruptures and air enters the pleural space without major trauma",
+    "The patient breathes too rapidly from anxiety only",
+    "Mucus enters the stomach",
+    "The heart beats normally"
+  ],
+  correct: 0,
+  explanation: "Escaped air can collapse part or all of a lung."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Which set of findings most suggests spontaneous pneumothorax?",
+  answers: [
+    "Sudden chest pain, dyspnea, and decreased breath sounds on one side",
+    "Gradual toe pain and normal breathing",
+    "Normal lung sounds with no symptoms",
+    "Stomach pain after eating only"
+  ],
+  correct: 0,
+  explanation: "Sudden onset with unilateral decreased breath sounds is highly concerning."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Pleural effusion is:",
+  answers: [
+    "Fluid collecting in the pleural space around the lung",
+    "Air narrowing only the upper airway",
+    "Mucus inside the nose only",
+    "Destruction of heart muscle only"
+  ],
+  correct: 0,
+  explanation: "Fluid around the lung can compress it and cause dyspnea."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "A pulmonary embolism is:",
+  answers: [
+    "A blood clot obstructing blood flow through the lung\u2019s vessels",
+    "Fluid filling the stomach",
+    "Airflow improving after an inhaler",
+    "Swelling of a sprained joint"
+  ],
+  correct: 0,
+  explanation: "A pulmonary embolism blocks pulmonary circulation and may suddenly impair oxygenation."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Which patient has a risk factor for pulmonary embolism?",
+  answers: [
+    "Patient recently immobilized after surgery who suddenly becomes short of breath",
+    "Patient with a minor paper cut",
+    "Patient who slept eight hours and feels well",
+    "Patient with a healed finger bruise"
+  ],
+  correct: 0,
+  explanation: "Immobility and surgery can increase clot risk."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "A patient with sudden dyspnea, chest pain, tachycardia, and relatively clear lung sounds may have:",
+  answers: [
+    "Pulmonary embolism",
     "Normal breathing",
-    "Quiet relaxed breathing"
+    "Mild ankle strain only",
+    "Isolated toothache"
   ],
   correct: 0,
-  explanation: "Gurgling can suggest fluid, vomit, blood, or secretions in the airway."
+  explanation: "Pulmonary embolism may cause major dyspnea without obvious abnormal lung sounds."
 },
 {
-  chapter: 10,
-  topic: "Ventilation",
-  question: "What is an important sign that BVM ventilations are working?",
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Hyperventilation causes problems primarily because the patient:",
   answers: [
-    "Chest rise with each ventilation",
-    "The patient’s shoes move",
-    "The oxygen tank gets colder only",
-    "The mask is held loosely"
+    "Loses excessive carbon dioxide from rapid or deep breathing",
+    "Gains excess carbon dioxide from apnea",
+    "Develops a fractured rib",
+    "Immediately develops pulmonary edema every time"
   ],
   correct: 0,
-  explanation: "Visible chest rise is a key sign that air is entering the lungs during ventilation."
+  explanation: "Excess ventilation decreases carbon dioxide and can cause tingling, dizziness, and cramping."
 },
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Before assuming a patient is hyperventilating from anxiety, the EMT should:",
+  answers: [
+    "Evaluate for serious medical causes of rapid breathing",
+    "Ignore the patient\u2019s vital signs",
+    "Tell the patient to leave",
+    "Delay all assessment"
+  ],
+  correct: 0,
+  explanation: "Pulmonary embolism, hypoxia, asthma, shock, and cardiac problems can mimic anxiety-related hyperventilation."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "A patient develops respiratory distress after inhaling toxic fumes at work. The first major concern is:",
+  answers: [
+    "Scene safety and removing the patient from continued exposure when safe",
+    "Giving the patient food immediately",
+    "Having the patient walk around the contaminated area",
+    "Ignoring the possibility of airway or lung injury"
+  ],
+  correct: 0,
+  explanation: "Chemical or industrial exposure creates risks for both the patient and rescuer."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "A metered-dose inhaler delivers medication as:",
+  answers: [
+    "A measured spray inhaled into the lungs",
+    "A tablet swallowed whole only",
+    "A bandage applied to the chest",
+    "A blood pressure reading"
+  ],
+  correct: 0,
+  explanation: "An MDI sends a measured dose of medication into the airway."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "A small-volume nebulizer delivers medication by:",
+  answers: [
+    "Turning liquid medication into an inhaled mist",
+    "Injecting it directly into the bone",
+    "Applying it only to skin",
+    "Removing mucus surgically"
+  ],
+  correct: 0,
+  explanation: "Nebulized medication is inhaled as a fine aerosol mist."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Before helping a patient with a prescribed inhaler, the EMT should confirm all of the following EXCEPT:",
+  answers: [
+    "The inhaler belongs to the patient",
+    "The medication is indicated and not expired",
+    "Local protocol or medical control allows assistance",
+    "The inhaler belongs to a nearby friend instead of the patient"
+  ],
+  correct: 3,
+  explanation: "The medication should be prescribed for the patient being treated."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "A rescue inhaler such as albuterol differs from a maintenance inhaler because albuterol:",
+  answers: [
+    "Is designed to rapidly relieve bronchospasm",
+    "Has no immediate effect",
+    "Is only used to treat fractures",
+    "Permanently cures all lung disease"
+  ],
+  correct: 0,
+  explanation: "Albuterol is a fast-acting bronchodilator used for acute symptoms."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "A patient in respiratory failure with minimal air movement may not benefit sufficiently from an inhaler because:",
+  answers: [
+    "The medication cannot move deeply into the lungs without adequate airflow",
+    "The patient is always pretending",
+    "Inhalers work only on healthy people",
+    "Inhalers always cause pneumothorax"
+  ],
+  correct: 0,
+  explanation: "In severe respiratory failure, immediate ventilatory support may be more important."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Which intervention is appropriate when a respiratory patient becomes unconscious and breathing becomes inadequate?",
+  answers: [
+    "Assist ventilation with a BVM",
+    "Give the patient food",
+    "Have the patient walk",
+    "Delay treatment until hospital arrival"
+  ],
+  correct: 0,
+  explanation: "Inadequate breathing requires immediate ventilatory support."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Foreign body aspiration means:",
+  answers: [
+    "Material enters the airway and may obstruct airflow",
+    "A blood clot enters the heart",
+    "Fluid enters the joint",
+    "The patient becomes mildly thirsty"
+  ],
+  correct: 0,
+  explanation: "Food, liquid, or objects can enter the airway and impair breathing."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "A patient with a tracheostomy develops sudden dyspnea. One possible cause is:",
+  answers: [
+    "Obstruction or malfunction of the tracheostomy tube",
+    "Normal breathing improvement",
+    "A healed scratch on the arm",
+    "Improved airway clearance in all cases"
+  ],
+  correct: 0,
+  explanation: "Secretions, displacement, or obstruction may interfere with airflow through the tracheostomy."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Cystic fibrosis causes respiratory emergencies primarily because it produces:",
+  answers: [
+    "Thick mucus that obstructs airways and promotes infection",
+    "Thin bones only",
+    "Increased vision only",
+    "Complete immunity to infection"
+  ],
+  correct: 0,
+  explanation: "Thick secretions interfere with airflow and make respiratory infections more likely."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "Which patient most urgently needs rapid transport and aggressive breathing support?",
+  answers: [
+    "Patient with respiratory distress whose mental status is declining",
+    "Patient with mild cough and normal breathing",
+    "Patient with no symptoms requesting directions",
+    "Patient with a healed cut and normal vital signs"
+  ],
+  correct: 0,
+  explanation: "Declining mental status may indicate worsening hypoxia and respiratory failure."
+},
+{
+  chapter: 15,
+  topic: "Respiratory Emergencies",
+  question: "The EMT\u2019s most important overall goal when treating respiratory emergencies is to:",
+  answers: [
+    "Recognize inadequate breathing early and support oxygenation and ventilation",
+    "Diagnose every disease with certainty in the field",
+    "Delay transport until symptoms completely resolve",
+    "Avoid reassessment once oxygen is applied"
+  ],
+  correct: 0,
+  explanation: "EMT care focuses on recognizing life threats and supporting airway, breathing, and transport."
+}
 ];
 
 const flashcards = [
@@ -1429,26 +2604,110 @@ const flashcards = [
   { chapter: 9, term: "Priority Patient", definition: "A patient with signs of serious illness or injury needing rapid transport." },
 
   // Chapter 10
-  { chapter: 10, term: "Airway Management", definition: "Keeping the airway open and clear so the patient can breathe." },
-  { chapter: 10, term: "Head Tilt-Chin Lift", definition: "Airway maneuver used when spinal injury is not suspected." },
-  { chapter: 10, term: "Jaw-Thrust Maneuver", definition: "Airway maneuver preferred when spinal injury is suspected." },
-  { chapter: 10, term: "Suctioning", definition: "Removing blood, vomit, mucus, or secretions from the airway." },
-  { chapter: 10, term: "OPA", definition: "Oropharyngeal airway used for an unresponsive patient without a gag reflex." },
-  { chapter: 10, term: "NPA", definition: "Nasopharyngeal airway inserted through the nose to help maintain an airway." },
-  { chapter: 10, term: "BVM", definition: "Bag-valve mask used to ventilate patients who are not breathing adequately." },
-  { chapter: 10, term: "Nonrebreather Mask", definition: "Oxygen mask that can deliver high-concentration oxygen." },
-  { chapter: 10, term: "Gurgling", definition: "Airway sound that may mean fluid is present." },
-  { chapter: 10, term: "Chest Rise", definition: "Visible rise of the chest showing air is entering during ventilation." },
-  { chapter: 10, term: "Patent Airway", definition: "An open airway that allows air to move in and out." },
-  { chapter: 10, term: "Airway Obstruction", definition: "A blockage that prevents normal airflow." },
-  { chapter: 10, term: "Snoring", definition: "Airway sound that may suggest the tongue is blocking the airway." },
-  { chapter: 10, term: "Stridor", definition: "High-pitched sound that may suggest upper airway obstruction." },
-  { chapter: 10, term: "Wheezing", definition: "Whistling lung sound often related to narrowed lower airways." },
-  { chapter: 10, term: "Agonal Breathing", definition: "Irregular gasping breaths that are not adequate breathing." },
-  { chapter: 10, term: "Ventilation", definition: "Moving air in and out of the lungs." },
-  { chapter: 10, term: "Oxygenation", definition: "Getting oxygen into the blood." },
-  { chapter: 10, term: "Nasal Cannula", definition: "Low-flow oxygen device placed in the nostrils." },
-  { chapter: 10, term: "Pulse Oximetry", definition: "Tool that estimates oxygen saturation in the blood." }
+  { chapter: 10, term: "Respiratory system", definition: "Body structures that move air and allow oxygen and carbon dioxide exchange." },
+  { chapter: 10, term: "Ventilation", definition: "Movement of air between the lungs and the environment." },
+  { chapter: 10, term: "Upper airway", definition: "Structures above the vocal cords." },
+  { chapter: 10, term: "Main function of the upper airway", definition: "Warm, filter, and humidify incoming air." },
+  { chapter: 10, term: "Lower airway", definition: "Structures that carry air from the glottis toward the alveoli and pulmonary capillary membrane." },
+  { chapter: 10, term: "Pharynx", definition: "Muscular throat tube connecting the nose and mouth toward the larynx and esophagus." },
+  { chapter: 10, term: "Three divisions of the pharynx", definition: "Nasopharynx, oropharynx, and laryngopharynx/hypopharynx." },
+  { chapter: 10, term: "Nasopharynx", definition: "Part of the pharynx behind the nose." },
+  { chapter: 10, term: "Function of the nasopharynx lining", definition: "Filters particles and helps warm and humidify air." },
+  { chapter: 10, term: "Oropharynx", definition: "Portion of the pharynx behind the mouth." },
+  { chapter: 10, term: "Laryngopharynx", definition: "Lowest pharynx section; splits toward the larynx and esophagus." },
+  { chapter: 10, term: "Larynx", definition: "Voice box and transition point between upper and lower airway." },
+  { chapter: 10, term: "Epiglottis", definition: "Flap that protects the airway during swallowing." },
+  { chapter: 10, term: "Aspiration", definition: "Entry of foreign material into the airway or lungs." },
+  { chapter: 10, term: "Thyroid cartilage", definition: "Cartilage forming the Adam's apple." },
+  { chapter: 10, term: "Cricoid cartilage", definition: "Complete ring at the lowest part of the larynx." },
+  { chapter: 10, term: "Cricothyroid membrane", definition: "Tissue connecting thyroid cartilage to cricoid cartilage." },
+  { chapter: 10, term: "Vocal cords", definition: "Tissue bands involved in speech and airway protection." },
+  { chapter: 10, term: "Glottis", definition: "Opening between the vocal cords; narrowest adult airway region." },
+  { chapter: 10, term: "Trachea", definition: "Windpipe; carries air toward the lungs." },
+  { chapter: 10, term: "Carina", definition: "Location where the trachea splits into right and left mainstem bronchi." },
+  { chapter: 10, term: "Mainstem bronchi", definition: "Major airway branches entering the lungs." },
+  { chapter: 10, term: "Bronchioles", definition: "Small smooth-muscle airways that can dilate or constrict." },
+  { chapter: 10, term: "Alveolar ducts", definition: "Small airway passages leading to alveolar sacs." },
+  { chapter: 10, term: "Alveoli", definition: "Tiny air sacs where oxygen and carbon dioxide exchange occurs." },
+  { chapter: 10, term: "Pulmonary capillaries", definition: "Small vessels around alveoli involved in gas exchange." },
+  { chapter: 10, term: "Oxygen movement at the alveoli", definition: "Oxygen moves from alveoli into pulmonary capillaries." },
+  { chapter: 10, term: "Carbon dioxide movement at the alveoli", definition: "Carbon dioxide moves from pulmonary capillaries into alveoli to be exhaled." },
+  { chapter: 10, term: "Pleura", definition: "Membrane surrounding the lungs and lining the chest cavity." },
+  { chapter: 10, term: "Visceral pleura", definition: "Membrane directly covering the lungs." },
+  { chapter: 10, term: "Parietal pleura", definition: "Membrane lining the inside of the chest cavity." },
+  { chapter: 10, term: "Mediastinum", definition: "Space between the lungs containing the heart, major vessels, airway structures, and nerves." },
+  { chapter: 10, term: "Diaphragm", definition: "Main breathing muscle; contracts downward during inhalation." },
+  { chapter: 10, term: "Phrenic nerve", definition: "Nerve that controls diaphragm contraction." },
+  { chapter: 10, term: "Intercostal muscles", definition: "Muscles between the ribs that assist breathing." },
+  { chapter: 10, term: "Accessory muscles", definition: "Extra muscles used when breathing requires more effort." },
+  { chapter: 10, term: "Pediatric occiput difference", definition: "Larger back of the skull may flex the airway when supine." },
+  { chapter: 10, term: "Pediatric tongue and jaw difference", definition: "Smaller jaw and larger tongue increase obstruction risk." },
+  { chapter: 10, term: "Pediatric epiglottis difference", definition: "More floppy and omega-shaped than an adult's." },
+  { chapter: 10, term: "Pediatric narrowest airway point", definition: "Cricoid ring in children younger than 8 years." },
+  { chapter: 10, term: "Belly breathers", definition: "Infants and children rely strongly on diaphragm movement." },
+
+  // Chapter 15
+  { chapter: 15, term: "Dyspnea", definition: "Difficulty breathing or shortness of breath." },
+  { chapter: 15, term: "Respiratory distress", definition: "Patient is breathing but working hard to maintain oxygenation and ventilation." },
+  { chapter: 15, term: "Respiratory failure", definition: "Breathing is inadequate to support the body; may require BVM ventilation." },
+  { chapter: 15, term: "Signs of respiratory distress", definition: "Tachypnea, accessory muscle use, tripod position, abnormal breath sounds, difficulty speaking." },
+  { chapter: 15, term: "Signs of respiratory failure", definition: "Altered mental status, exhaustion, cyanosis, poor air movement, slow or irregular breathing." },
+  { chapter: 15, term: "Tachypnea", definition: "Rapid breathing." },
+  { chapter: 15, term: "Bradypnea", definition: "Slow breathing; can be a dangerous sign in a deteriorating patient." },
+  { chapter: 15, term: "Cyanosis", definition: "Blue or gray skin color caused by poor oxygenation; often a late sign." },
+  { chapter: 15, term: "Tripod position", definition: "Sitting and leaning forward to improve breathing." },
+  { chapter: 15, term: "Accessory muscles", definition: "Extra neck and chest muscles used during difficult breathing." },
+  { chapter: 15, term: "Adventitious breath sounds", definition: "Abnormal sounds heard during lung auscultation." },
+  { chapter: 15, term: "Wheezing", definition: "High-pitched expiratory whistling caused by narrowed lower airways." },
+  { chapter: 15, term: "Crackles / rales", definition: "Crackling or bubbling sounds from fluid in alveoli." },
+  { chapter: 15, term: "Rhonchi", definition: "Rattling breath sounds from mucus or secretions in larger airways." },
+  { chapter: 15, term: "Stridor", definition: "Harsh inspiratory sound from upper-airway obstruction." },
+  { chapter: 15, term: "Snoring respirations", definition: "Partial upper-airway obstruction, often involving the tongue." },
+  { chapter: 15, term: "Absent breath sounds", definition: "No airflow heard; concerning for severe ventilation problem or pneumothorax." },
+  { chapter: 15, term: "Epiglottitis", definition: "Severe upper-airway swelling that may rapidly obstruct breathing." },
+  { chapter: 15, term: "Suspected epiglottitis management", definition: "Keep calm, allow upright position, avoid unnecessary airway stimulation, transport promptly." },
+  { chapter: 15, term: "Pneumonia", definition: "Infection of lung tissue causing cough, fever, dyspnea, and abnormal breath sounds." },
+  { chapter: 15, term: "RSV", definition: "Contagious viral illness affecting lungs and breathing passages, especially serious in children." },
+  { chapter: 15, term: "Pertussis", definition: "Whooping cough; contagious respiratory infection." },
+  { chapter: 15, term: "Acute pulmonary edema", definition: "Fluid suddenly accumulates in alveoli and lung tissue." },
+  { chapter: 15, term: "Common cause of pulmonary edema", definition: "Congestive heart failure." },
+  { chapter: 15, term: "Pulmonary edema breath sound", definition: "Crackles, sometimes wheezing." },
+  { chapter: 15, term: "Severe pulmonary edema sign", definition: "Frothy pink sputum." },
+  { chapter: 15, term: "Orthopnea", definition: "Difficulty breathing while lying flat." },
+  { chapter: 15, term: "CPAP", definition: "Positive-pressure support that may improve oxygenation in appropriate alert patients." },
+  { chapter: 15, term: "CPAP contraindication examples", definition: "Respiratory arrest, inability to follow commands, hypotension, pneumothorax/chest trauma, tracheostomy, active GI bleeding." },
+  { chapter: 15, term: "COPD", definition: "Chronic obstruction and damage of airways and alveoli." },
+  { chapter: 15, term: "Chronic bronchitis", definition: "Chronic airway inflammation with increased mucus." },
+  { chapter: 15, term: "Emphysema", definition: "Alveolar wall destruction and trapped air." },
+  { chapter: 15, term: "COPD common signs", definition: "Wheezing, prolonged exhalation, pursed-lip breathing, tripod position, chronic cough." },
+  { chapter: 15, term: "Carbon dioxide retention", definition: "CO\u2082 buildup that may alter mental status in severe COPD." },
+  { chapter: 15, term: "Oxygen and COPD", definition: "Do not withhold oxygen from a patient who needs it; monitor closely." },
+  { chapter: 15, term: "Asthma", definition: "Lower-airway narrowing caused by bronchospasm, inflammation, and mucus." },
+  { chapter: 15, term: "Asthma common sound", definition: "Wheezing." },
+  { chapter: 15, term: "Severe asthma warning", definition: "Very little air movement or decreasing wheeze may mean respiratory failure." },
+  { chapter: 15, term: "Bronchospasm", definition: "Tightening of airway smooth muscle that narrows breathing passages." },
+  { chapter: 15, term: "Bronchodilator", definition: "Medication that relaxes airway muscles and improves airflow." },
+  { chapter: 15, term: "Albuterol", definition: "Rapid-acting bronchodilator commonly used for acute asthma or bronchospasm." },
+  { chapter: 15, term: "Anaphylaxis", definition: "Life-threatening allergic reaction that may cause airway swelling, bronchospasm, and shock." },
+  { chapter: 15, term: "Spontaneous pneumothorax", definition: "Lung collapse caused by air entering pleural space without major injury." },
+  { chapter: 15, term: "Pneumothorax signs", definition: "Sudden chest pain, dyspnea, decreased or absent breath sounds on one side." },
+  { chapter: 15, term: "Pleural effusion", definition: "Fluid around the lung in the pleural space." },
+  { chapter: 15, term: "Pulmonary embolism", definition: "Blood clot blocking pulmonary blood flow." },
+  { chapter: 15, term: "Pulmonary embolism clues", definition: "Sudden dyspnea, chest pain, tachycardia, low oxygen, risk factors for clots." },
+  { chapter: 15, term: "Hyperventilation", definition: "Excessive breathing that causes carbon dioxide loss." },
+  { chapter: 15, term: "Hyperventilation warning", definition: "Rule out serious medical causes before assuming anxiety." },
+  { chapter: 15, term: "Environmental/industrial exposure", definition: "Respiratory emergency caused by smoke, gases, fumes, or chemicals." },
+  { chapter: 15, term: "Foreign body aspiration", definition: "Material enters the airway and blocks or irritates airflow." },
+  { chapter: 15, term: "Tracheostomy dysfunction", definition: "Breathing problem from a blocked, displaced, or malfunctioning tracheostomy tube." },
+  { chapter: 15, term: "Cystic fibrosis", definition: "Disease causing thick mucus, airway obstruction, and repeated lung infections." },
+  { chapter: 15, term: "Pulse oximeter", definition: "Tool estimating oxygen saturation in the blood." },
+  { chapter: 15, term: "Metered-dose inhaler", definition: "Device providing a measured inhaled spray of medication." },
+  { chapter: 15, term: "Small-volume nebulizer", definition: "Device turning liquid medication into inhaled mist." },
+  { chapter: 15, term: "Rescue inhaler", definition: "Fast-acting medication for acute breathing symptoms, such as albuterol." },
+  { chapter: 15, term: "Maintenance inhaler", definition: "Preventive medication that does not immediately relieve an acute breathing emergency." },
+  { chapter: 15, term: "Respiratory patient reassessment", definition: "Reassess unstable patients and patients after medication at least every 5 minutes." },
+  { chapter: 15, term: "When to use a BVM", definition: "When breathing is inadequate or respiratory failure develops." }
 ];
+
 
 export { chapters, questionBank, flashcards };

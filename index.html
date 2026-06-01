@@ -11,9 +11,11 @@
 
     <header class="top-bar">
       <div>
-        <p class="eyebrow">EMT Study App</p>
         <h1>EMT Prep Hub</h1>
-        <p id="user-greeting" class="user-greeting"></p>
+        <button id="profile-trigger" class="profile-trigger hidden" onclick="toggleProfileMenu()" type="button">
+          <span id="profile-avatar" class="profile-avatar">?</span>
+          <span id="user-greeting" class="user-greeting"></span>
+        </button>
       </div>
       <div class="streak-badge">🔥 0</div>
     </header>
@@ -21,7 +23,7 @@
     <main>
       <section id="home-screen" class="screen active">
         <div class="hero-card">
-          <h2>Study Chapters 6, 8, 9, and 10</h2>
+          <h2>Study Chapters 6, 8, 9, 10, and 15</h2>
           <p>Practice EMT questions, review missed answers, and build confidence before class.</p>
           <div class="stats-section">
             <h3>Lifetime</h3>
@@ -119,6 +121,7 @@
       <option value="8">Chapter 8</option>
       <option value="9">Chapter 9</option>
       <option value="10">Chapter 10</option>
+      <option value="15">Chapter 15</option>
     </select>
   </div>
 
@@ -154,12 +157,18 @@
         </div>
 
         <div id="ranking-list" class="ranking-list"></div>
+
+        <div class="ranking-top ranking-section-title">
+          <h2>Most Answered Questions - Weekly</h2>
+        </div>
+
+        <div id="weekly-ranking-list" class="ranking-list"></div>
       </section>
     </main>
 
     <nav class="bottom-nav">
       <button onclick="showScreen('home-screen')">🏠<span>Home</span></button>
-      <button onclick="showScreen('quiz-screen')">📝<span>Quiz</span></button>
+      <button onclick="startQuickQuiz(10)">📝<span>Quiz</span></button>
       <button onclick="showScreen('flashcards-screen')">📚<span>Cards</span></button>
       <button onclick="showScreen('missed-screen')">⭐<span>Missed</span></button>
       <button onclick="showScreen('ranking-screen')">🏆<span>Rank</span></button>
@@ -168,7 +177,7 @@
     <div id="username-modal" class="username-modal hidden">
       <form id="username-form" class="username-card">
         <p class="eyebrow">Welcome</p>
-        <h2>Enter your username</h2>
+        <h2>Log in to save progress</h2>
         <input
           id="username-input"
           type="text"
@@ -178,8 +187,37 @@
           placeholder="Username"
           required
         />
-        <button class="primary-btn" type="submit">Start Studying</button>
+        <input
+          id="password-input"
+          type="password"
+          name="password"
+          autocomplete="current-password"
+          minlength="4"
+          maxlength="40"
+          placeholder="Password"
+          required
+        />
+        <p id="login-message" class="login-message"></p>
+        <button class="primary-btn" type="submit" data-auth-action="login">Log In</button>
+        <button class="secondary-btn" type="submit" data-auth-action="create">Create Account</button>
       </form>
+    </div>
+
+    <div id="profile-menu" class="profile-menu hidden">
+      <div class="profile-menu-card">
+        <div class="profile-menu-top">
+          <span id="profile-menu-avatar" class="profile-avatar profile-avatar-large">?</span>
+          <div>
+            <p id="profile-menu-name" class="profile-menu-name"></p>
+            <p class="profile-menu-label">Profile</p>
+          </div>
+        </div>
+        <label class="secondary-btn profile-upload">
+          Add Profile Picture
+          <input id="profile-picture-input" type="file" accept="image/*" onchange="updateProfilePicture(event)" />
+        </label>
+        <button class="secondary-btn" onclick="logoutUser()" type="button">Log Out</button>
+      </div>
     </div>
 
   </div>
